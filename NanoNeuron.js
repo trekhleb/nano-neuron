@@ -84,6 +84,10 @@ function forwardPropagation(model, xTrain, yTrain) {
 
 // Backward propagation.
 // This is the place where machine learning mistakenly looks like a magic.
+// The key concept here is derivative which shows what step to take to get closer
+// to function minimum. Remember, finding the minimum of a cost function is the
+// ultimate goal of training process. The cost function looks like this:
+// (y - prediction) ^ 2 * 1/2, where prediction = x * w + b.
 function backwardPropagation(predictions, xTrain, yTrain) {
   const m = xTrain.length;
   let dW = 0;
@@ -98,12 +102,6 @@ function backwardPropagation(predictions, xTrain, yTrain) {
   dB /= m;
   return [dW, dB];
 }
-
-// Train NanoNeuron model.
-// Now let's spend some time (epochs) with our yet stupid NanoNeuron model and try to train/teach it.
-// epochs - number of training iterations.
-// alpha - is a size of a learning step.
-// xTrain/yTrain - this is our training set of data
 
 // Train the model.
 // This is a teacher for our NanoNeuron model:
@@ -129,11 +127,11 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
     nanoNeuron.w += alpha * dW;
     nanoNeuron.b += alpha * dB;
   
-    console.log({
-      cost,
-      w: nanoNeuron.w,
-      b: nanoNeuron.b,
-    });
+    // console.log({
+    //   cost,
+    //   w: nanoNeuron.w,
+    //   b: nanoNeuron.b,
+    // });
   }
 
   return costHistory;
@@ -144,8 +142,8 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
 // Let's create our NanoNeuron instance.
 // At this moment NanoNeuron doesn't know what values should be set for parameters 'w' and 'b'.
 // So let's set up 'w' and 'b' randomly.
-const w = Math.random();
-const b = Math.random();
+const w = Math.random(); // i.e. -> 0.9492
+const b = Math.random(); // i.e. -> 0.4570
 const nanoNeuron = new NanoNeuron(w, b);
 
 // Generate training and test data-sets.
