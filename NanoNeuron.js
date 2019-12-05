@@ -49,7 +49,7 @@ function generateTestSet() {
   // we make sure that test set has different data comparing to training set.
   for (let x = 0.5; x < 100; x += 1) {
     const y = celsiusToFahrenheit(x);
-    yTest.push(x);
+    xTest.push(x);
     yTest.push(y);
   }
   return [xTest, yTest];
@@ -150,8 +150,10 @@ const b = Math.random(); // i.e. -> 0.4570
 const nanoNeuron = new NanoNeuron(w, b);
 
 // Generate training and test data-sets.
-const [xTrain, yTrain] = generateTrainingSet();
-const [xTest, yTest] = generateTestSet();
+const [xTrain, yTrain] = generateTrainingSet(); // xTrain -> [0, 1, 2, ...], yTrain -> [32, 33.8, 35.6, ...]
+const [xTest, yTest] = generateTestSet(); // xTest -> [0.5, 1.5, 2.5, ...], yTest -> [32.9, 34.7, 36.5, ...]
+
+console.log(yTest);
 
 // Let's train the model with small 0.0005 steps during the 70000 epochs.
 // You can play with these parameters, they are being defined empirically.
@@ -162,3 +164,6 @@ const costHistory = trainModel({
   xTrain,
   yTrain,
 });
+
+// Evaluate our model accuracy for test dataset to see how well our NanoNeuron 
+// deals with new unknown data predictions.
