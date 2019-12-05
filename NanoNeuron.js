@@ -121,9 +121,11 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
     costHistory.push(cost);
   
     // Backward propagation. Let's learn some lessons from the mistakes.
+    // This function returns smalls steps we need to take for for params 'w' and 'b'
+    // to make predictions more accurate.
     const [dW, dB] = backwardPropagation(predictions, xTrain, yTrain);
   
-    // Adjust our NanoNeuron.
+    // Adjust our NanoNeuron parameters to increase accuracy of our model predictions.
     nanoNeuron.w += alpha * dW;
     nanoNeuron.b += alpha * dB;
   
@@ -134,6 +136,7 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
     // });
   }
 
+  // Let's return cost history from the function to be able to log or to plot it.
   return costHistory;
 }
 
@@ -150,6 +153,8 @@ const nanoNeuron = new NanoNeuron(w, b);
 const [xTrain, yTrain] = generateTrainingSet();
 const [xTest, yTest] = generateTestSet();
 
+// Let's train the model with small 0.0005 steps during the 70000 epochs.
+// You can play with these parameters, they are being defined empirically.
 const costHistory = trainModel({
   model: nanoNeuron,
   epochs: 70000,
