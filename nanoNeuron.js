@@ -1,12 +1,11 @@
 // NanoNeuron model.
-// It implements really basic linear dependency between 'x' and 'y': y = w * x + b.
+// It implements basic linear dependency between 'x' and 'y': y = w * x + b.
 // Simply saying our NanoNeuron is a kid that can draw the straight line in XY coordinates.
 function NanoNeuron(w, b) {
   // NanoNeuron knows only about these two parameters of linear function.
   // These parameters are something that NanoNeuron is going to "learn" during the training process.
   this.w = w;
   this.b = b;
-
   // This is the only thing that NanoNeuron can do - imitate linear dependency.
   // It accepts some input 'x' and predict the output 'y'. No magic here.
   this.predict = (x) => {
@@ -15,8 +14,8 @@ function NanoNeuron(w, b) {
 }
 
 // Convert Celsius values to Fahrenheit using formula: f = 1.8 * c + 32.
-// Ultimately we want to teach our NanoNeuron to imitate this function
-// (to learn that w = 1.8 and b = 32) without knowing these parameters in advance.
+// Ultimately we want to teach our NanoNeuron to imitate this function (to learn
+// that w = 1.8 and b = 32) without knowing these parameters in advance.
 function celsiusToFahrenheit(c) {
   const w = 1.8;
   const b = 32;
@@ -40,8 +39,8 @@ function generateTrainingSet() {
 }
 
 // Generate test examples.
-// This data will be used to evaluate how well our NanoNeuron performs
-// on the data that it didn't see during the training. This is the point where we could
+// This data will be used to evaluate how well our NanoNeuron performs on the data
+// that it didn't see during the training. This is the point where we could
 // see that our kid has grown and can make decisions on its own.
 function generateTestSet() {
   const xTest = [];
@@ -83,12 +82,16 @@ function forwardPropagation(model, xTrain, yTrain) {
   return [cost, predictions];
 }
 
+// Backward propagation.
+// This is the place where machine learning mistakenly looks like a magic.
 function backwardPropagation(predictions, xTrain, yTrain) {
   const m = xTrain.length;
   let dW = 0;
   let dB = 0;
   for (let i = 0; i < m; i += 1) {
+    // This is derivative of the cost function by `w` param.
     dW += (yTrain[i] - predictions[i]) * xTrain[i];
+    // This is derivative of the cost function by `b` param.
     dB += yTrain[i] - predictions[i];
   }
   dW /= m;
@@ -104,10 +107,10 @@ function backwardPropagation(predictions, xTrain, yTrain) {
 
 // Train the model.
 // This is a teacher for our NanoNeuron model:
-// - it will spend some time (epochs) for training
+// - it will spend some time (epochs) with our yet stupid NanoNeuron model and try to train/teach 
 // - it will use specific books (xTrain and yTrain dataset) for training
 // - it will push our kid to learn harder or softer based on a learning rate 'alpha'
-// (the harder the push the faster our neuro-kid will learn but if teacher will push too hard the kid will have a nerveous breakdown)
+// (the harder the push the faster our nano-kid will learn but if teacher will push too hard the kid will have a nervous breakdown)
 function trainModel({model, epochs, alpha, xTrain, yTrain}) {
   // The is the history of how NanoNeuron has learnt. It might have a good or bad marks during the learning 
   const costHistory = [];
@@ -156,9 +159,3 @@ const costHistory = trainModel({
   xTrain,
   yTrain,
 });
-
-// @TODO: Training set split 70/30.
-// @TODO: Input normalization.
-// @TODO: Vectorized implementation instead of 'for' loop.
-// @TODO: Activation function.
-// @TODO: No local optimum. Use logarithm.
