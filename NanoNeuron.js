@@ -194,10 +194,10 @@ console.log('Cost on new testing data:', testCost); // i.e. -> 0.0000023
 // Now, since we see that our NanoNeuron "kid" has performed well in the "school" during the training
 // and that he can convert Celsius to Fahrenheit temperatures correctly even for the data it hasn't seen
 // we can call it "smart" and ask him some questions. This was the ultimate goal of whole training process.
-const customTempInCelsius = 70;
-const customPrediction = nanoNeuron.predict(customTempInCelsius);
-console.log(`NanoNeuron "thinks" that ${customTempInCelsius}°C in Fahrenheit is:`, customPrediction); // -> 158.0002
-console.log('Correct answer is:', celsiusToFahrenheit(customTempInCelsius)); // -> 158
+const tempInCelsius = 70;
+const customPrediction = nanoNeuron.predict(tempInCelsius);
+console.log(`NanoNeuron "thinks" that ${tempInCelsius}°C in Fahrenheit is:`, customPrediction); // -> 158.0002
+console.log('Correct answer is:', celsiusToFahrenheit(tempInCelsius)); // -> 158
 
 // So close! As all the humans our NanoNeuron is good but not ideal :)
 // Happy learning to you!
