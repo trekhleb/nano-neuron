@@ -152,7 +152,7 @@ One thing about derivatives that will help you to understand how backward propag
 
 ![Derivative slope](https://www.mathsisfun.com/calculus/images/slope-x2-2.svg)
 
-_Image source: [MathIsFun]([MathIsFun](https://www.mathsisfun.com/calculus/derivatives-introduction.html))_
+_Image source:_ [_MathIsFun_]([MathIsFun](https://www.mathsisfun.com/calculus/derivatives-introduction.html))
 
 For example on the plot above you see that if we're at the point of `(x=2, y=4)` than the slope tells us to go `left` and `down` to get to function minimum. Also notice that the bigger the slope the faster we should move to the minimum.
 
