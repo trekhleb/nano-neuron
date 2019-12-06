@@ -96,7 +96,7 @@ function generateDataSets() {
 
 We need to have some metric that will show how close our model's prediction to correct values. The calculation of the cost (the mistake) between the correct output value of `y` and `prediction` that NanoNeuron made will be made using the following formula:
 
-![Celsius to Fahrenheit](https://github.com/trekhleb/nano-neuron/blob/master/assets/02_cost_function.png?raw=true)
+![Prediction Cost](https://github.com/trekhleb/nano-neuron/blob/master/assets/02_cost_function.png?raw=true)
 
 This is a simple difference between two values. The closer the values to each other the smaller the difference. We're using power of `2` here just to get rid of negative numbers so that `(1 - 2) ^ 2` would be the same as `(2 - 1) ^ 2`. Division by `2` is happening just to simplify further backward propagation formula (see below).
 
@@ -105,6 +105,34 @@ The cost function in this case will be as simple as:
 ```javascript
 function predictionCost(y, prediction) {
   return (y - prediction) ** 2 / 2; // i.e. -> 235.6
+}
+```
+
+### Forward propagation
+
+To do forward propagation means to do a prediction for all training examples from `xTrain` and `yTrain` data-sets and to calculate the average cost of those prediction along the way.
+
+We just let our NanoNeuron say its opinion at this point, just ask him to guess how to convert the temperature. It might be stupidly wrong here. The average cost will show how wrong our model is right now. This cost value is really valuable since by changing the NanoNeuron parameters `w` and `b` and by doing the forward propagation again we will be able to evaluate if NanoNeuron became smarter or not after parameters changes.
+
+The average cost will be calculated using the following formula:
+
+![Average Cost](https://github.com/trekhleb/nano-neuron/blob/master/assets/03_average_cost_function.png?raw=true)
+
+Here is how we may implement it in code:
+
+```javascript
+function forwardPropagation(model, xTrain, yTrain) {
+  const m = xTrain.length;
+  const predictions = [];
+  let cost = 0;
+  for (let i = 0; i < m; i += 1) {
+    const prediction = nanoNeuron.predict(xTrain[i]);
+    cost += predictionCost(yTrain[i], prediction);
+    predictions.push(prediction);
+  }
+  // We are interested in average cost.
+  cost /= m;
+  return [predictions, cost];
 }
 ```
 

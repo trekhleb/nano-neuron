@@ -77,7 +77,7 @@ function predictionCost(y, prediction) {
 
 // Forward propagation.
 // This function takes all examples from training sets xTrain and yTrain and calculates
-// model predicts for each example from xTrain.
+// model predictions for each example from xTrain.
 // Along the way it also calculates the prediction cost (average error our NanoNeuron made while predicting).
 function forwardPropagation(model, xTrain, yTrain) {
   const m = xTrain.length;
