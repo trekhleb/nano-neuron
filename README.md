@@ -118,6 +118,8 @@ The average cost will be calculated using the following formula:
 
 ![Average Cost](https://github.com/trekhleb/nano-neuron/blob/master/assets/03_average_cost_function.png?raw=true)
 
+Where `m` is a number of training examples (in our case is `100`).
+
 Here is how we may implement it in code:
 
 ```javascript
@@ -156,6 +158,16 @@ _Image source: [MathIsFun](https://www.mathsisfun.com/calculus/derivatives-intro
 
 For example on the plot above you see that if we're at the point of `(x=2, y=4)` than the slope tells us to go `left` and `down` to get to function minimum. Also notice that the bigger the slope the faster we should move to the minimum.
 
+The derivatives of our `averageCost` function for parameters `w` and `b` looks like this:
+
+![dW](https://github.com/trekhleb/nano-neuron/blob/master/assets/04_dw.png?raw=true)
+
+![dB](https://github.com/trekhleb/nano-neuron/blob/master/assets/04_db.png?raw=true)
+
+Where `m` is a number of training examples (in our case is `100`).
+
+_You may read more about derivative rules and how to get a derivative of complex functions [here](https://www.mathsisfun.com/calculus/derivatives-rules.html)._
+
 ```javascript
 function backwardPropagation(predictions, xTrain, yTrain) {
   const m = xTrain.length;
@@ -164,13 +176,7 @@ function backwardPropagation(predictions, xTrain, yTrain) {
   let dW = 0;
   let dB = 0;
   for (let i = 0; i < m; i += 1) {
-    // This is derivative of the cost function by 'w' param.
-    // It will show in which direction (positive/negative sign of 'dW') and
-    // how fast (the absolute value of 'dW') the 'w' param needs to be changed.
     dW += (yTrain[i] - predictions[i]) * xTrain[i];
-    // This is derivative of the cost function by 'b' param.
-    // It will show in which direction (positive/negative sign of 'dB') and
-    // how fast (the absolute value of 'dB') the 'b' param needs to be changed.
     dB += yTrain[i] - predictions[i];
   }
   // We're interested in average deltas for each params.
