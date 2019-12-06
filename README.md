@@ -266,7 +266,7 @@ console.log('Cost before the training:', trainingCostHistory[0]); // i.e. -> 469
 console.log('Cost after the training:', trainingCostHistory[epochs - 1]); // i.e. -> 0.0000024
 ```
 
-![Training process](https://github.com/trekhleb/nano-neuron/blob/master/assets/006-training?raw=true)
+![Training process](https://github.com/trekhleb/nano-neuron/blob/master/assets/06-training?raw=true)
 
 Let's take a look at NanoNeuron parameters to see what it has learned. We expect that NanoNeuron parameters `w` and `b` to be similar to ones we have in `celsiusToFahrenheit()` function (`w = 1.8` and `b = 32`) since our NanoNeuron tried to imitate it.
 
