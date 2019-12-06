@@ -125,7 +125,7 @@ function backwardPropagation(predictions, xTrain, yTrain) {
 // This is like a "teacher" for our NanoNeuron model:
 // - it will spend some time (epochs) with our yet stupid NanoNeuron model and try to train/teach it, 
 // - it will use specific "books" (xTrain and yTrain data-sets) for training,
-// - it will push our kid to learn harder (faster) by using a learning rate parameter 'alpha',
+// - it will push our kid to learn harder (faster) by using a learning rate parameter 'alpha'
 //   (the harder the push the faster our "nano-kid" will learn but if the teacher will push too hard 
 //    the "kid" will have a nervous breakdown and won't be able to learn anything).
 function trainModel({model, epochs, alpha, xTrain, yTrain}) {
@@ -149,12 +149,6 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
     // Adjust our NanoNeuron parameters to increase accuracy of our model predictions.
     nanoNeuron.w += alpha * dW;
     nanoNeuron.b += alpha * dB;
-  
-    // console.log({
-    //   cost,
-    //   w: nanoNeuron.w,
-    //   b: nanoNeuron.b,
-    // });
   }
 
   // Let's return cost history from the function to be able to log or to plot it after training.

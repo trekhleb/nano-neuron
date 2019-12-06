@@ -186,6 +186,57 @@ function backwardPropagation(predictions, xTrain, yTrain) {
 }
 ```
 
+### Training the model
+
+Now we know how to evaluate the correctness of our model for all training set examples (_forward propagation_), we also know how to do small adjustments to parameters `w` and `b` of the NanoNeuron model (_backward propagation_). But the issue is that if we will run forward propagation and then backward propagation only once it won't be enough for our model to learn any laws/trends from the training data. You may compare it with attending a one day of elementary school for the kid. He/she should go to the school not once but day after day and year after year to learn something.
+
+So we need to repeat forward and backward propagation for our model many times. That is exactly what `trainModel()` function does. it is like a "teacher" for our NanoNeuron model:
+
+- it will spend some time (`epochs`) with our yet slightly stupid NanoNeuron model and try to train/teach it,
+- it will use specific "books" (`xTrain` and `yTrain` data-sets) for training,
+- it will push our kid to learn harder (faster) by using a learning rate parameter `alpha`
+
+A few words about learning rate `alpha`. This is just a multiplier for `dW` and `dB` values we have calculated during the backward propagation. So, derivative pointed us out to the direction we need to take to find a minimum of the cost function (`dW` and `dB` sign) and it also pointed us out how fast we need to go to that direction (`dW` and `dB` absolute value). Now we need to multiply those step sizes to `alpha` just to make our movement to the minimum faster or slower. Sometimes if we will use big value of `alpha` we might simple jump over the minimum and never find it.
+
+The analogy with the teacher would be that the harder he pushes our "nano-kid" the faster our "nano-kid" will learn but if the teacher will push too hard the "kid" will have a nervous breakdown and won't be able to learn anything 🤯.
+
+Here is how we're going to update our model's `w` and `b` params:
+
+![w](https://github.com/trekhleb/nano-neuron/blob/master/assets/05_w.png?raw=true)
+
+![b](https://github.com/trekhleb/nano-neuron/blob/master/assets/05_b.png?raw=true)
+
+And here is out trainer function:
+
+```javascript
+function trainModel({model, epochs, alpha, xTrain, yTrain}) {
+  // The is the history array of how NanoNeuron learns.
+  // It might have a good or bad "marks" (costs) during the learning process.
+  const costHistory = [];
+
+  // Let's start counting epochs.
+  for (let epoch = 0; epoch < epochs; epoch += 1) {
+    // Forward propagation for all training examples.
+    // Let's save the cost for current iteration.
+    // This will help us to analyse how our model learns.
+    const [predictions, cost] = forwardPropagation(model, xTrain, yTrain);
+    costHistory.push(cost);
+  
+    // Backward propagation. Let's learn some lessons from the mistakes.
+    // This function returns smalls steps we need to take for params 'w' and 'b'
+    // to make predictions more accurate.
+    const [dW, dB] = backwardPropagation(predictions, xTrain, yTrain);
+  
+    // Adjust our NanoNeuron parameters to increase accuracy of our model predictions.
+    nanoNeuron.w += alpha * dW;
+    nanoNeuron.b += alpha * dB;
+  }
+
+  // Let's return cost history from the function to be able to log or to plot it after training.
+  return costHistory;
+}
+```
+
 ## Skipped machine learning concepts
 
 - Training set split 70/30.
