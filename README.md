@@ -16,7 +16,7 @@ You've probably heard about Neurons in the context of [Neural Networks](https://
 
 By the way the formula for converting Celsius to Fahrenheit is this:
 
-![Celsius to Fahrenheit](https://latex2png.com/pngs/3fb25c029381a8ab2d557919a4d125cd.png)
+![Celsius to Fahrenheit](https://github.com/trekhleb/nano-neuron/blob/master/assets/01_celsius_to_fahrenheit.png?raw=true)
 
 ## Skipped machine learning concepts
 
