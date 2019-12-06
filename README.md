@@ -41,7 +41,7 @@ function NanoNeuron(w, b) {
 
 ### Celsius to Fahrenheit conversion
 
-The temperature value in Celsius can be converted to Fahrenheit using the following formula: `f = 1.8 * c + 32`.
+The temperature value in Celsius can be converted to Fahrenheit using the following formula: `f = 1.8 * c + 32`, where `c` is a temperature in Celsius and `f` is calculated temperature in Fahrenheit.
 
 ```javascript
 function celsiusToFahrenheit(c) {
@@ -53,6 +53,44 @@ function celsiusToFahrenheit(c) {
 ```
 
 Ultimately we want to teach our NanoNeuron to imitate this function (to learn that `w = 1.8` and `b = 32`) without knowing these parameters in advance.
+
+### Generating data-sets
+
+Before the training we need to generate **training** and **test data-sets** based on `celsiusToFahrenheit()` function. Data-sets consist of pairs of input values and correctly labeled output values.
+
+> In real life in most of the cases this data would be rather collected than generated. For example we might have a set of images of hand-drawn numbers and corresponding set of numbers that explain what number is written on each picture.
+
+We will use TRAINING examples data to train our NanoNeuron. Before our NanoNeuron will grow and will be able to make decisions by its own we need to teach it what is right and what is wrong using training examples.
+
+We will use TEST examples to evaluate how well our NanoNeuron performs on the data that it didn't see during the training. This is the point where we could see that our "kid" has grown and can make decisions on its own.
+
+```javascript
+function generateDataSets() {
+  // xTrain -> [0, 1, 2, ...],
+  // yTrain -> [32, 33.8, 35.6, ...]
+  const xTrain = [];
+  const yTrain = [];
+  for (let x = 0; x < 100; x += 1) {
+    const y = celsiusToFahrenheit(x);
+    xTrain.push(x);
+    yTrain.push(y);
+  }
+
+  // xTest -> [0.5, 1.5, 2.5, ...]
+  // yTest -> [32.9, 34.7, 36.5, ...]
+  const xTest = [];
+  const yTest = [];
+  // By starting from 0.5 and using the same step of 1 as we have used for training set
+  // we make sure that test set has different data comparing to training set.
+  for (let x = 0.5; x < 100; x += 1) {
+    const y = celsiusToFahrenheit(x);
+    xTest.push(x);
+    yTest.push(y);
+  }
+
+  return [xTrain, yTrain, xTest, yTest];
+}
+```
 
 ## Skipped machine learning concepts
 
