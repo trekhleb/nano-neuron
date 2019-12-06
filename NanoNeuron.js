@@ -202,7 +202,7 @@ console.log('Cost on new testing data:', testCost); // i.e. -> 0.0000023
 // we can call it "smart" and ask him some questions. This was the ultimate goal of whole training process.
 const customTempInCelsius = 70;
 const customPrediction = nanoNeuron.predict(customTempInCelsius);
-console.log(`NanoNeuron "thinks" that ${customTempInCelsius}C in Fahrenheit is:`, customPrediction); // -> 158.0002
+console.log(`NanoNeuron "thinks" that ${customTempInCelsius}°C in Fahrenheit is:`, customPrediction); // -> 158.0002
 console.log('Correct answer is:', celsiusToFahrenheit(customTempInCelsius)); // -> 158
 
 // So close! As all the humans our NanoNeuron is good but not ideal :)
