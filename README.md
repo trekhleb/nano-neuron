@@ -14,7 +14,7 @@ The [NanoNeuron.js](https://github.com/trekhleb/nano-neuron/blob/master/NanoNeur
 
 You've probably heard about Neurons in the context of [Neural Networks](https://en.wikipedia.org/wiki/Neural_network). NanoNeuron is just that but simpler and we're going to implement it from scratch. For simplicity reasons we're not even going to build a network on NanoNeurons. We will have it all working on its own, doing some magical predictions for us. Namely, we will teach this singular NanoNeuron to convert (predict) the temperature from Celsius to Fahrenheit.
 
-By the way the formula for converting Celsius to Fahrenheit is this:
+By the way, the formula for converting Celsius to Fahrenheit is this:
 
 ![Celsius to Fahrenheit](https://github.com/trekhleb/nano-neuron/blob/master/assets/01_celsius_to_fahrenheit.png?raw=true)
 
