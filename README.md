@@ -249,6 +249,47 @@ Generate training and test data-sets.
 const [xTrain, yTrain, xTest, yTest] = generateDataSets();
 ```
 
+Let's train the model with small (`0.0005`) steps during the `70000` epochs. You can play with these parameters, they are being defined empirically.
+
+```javascript
+const epochs = 70000;
+const alpha = 0.0005;
+const trainingCostHistory = trainModel({model: nanoNeuron, epochs, alpha, xTrain, yTrain});
+```
+
+Let's check how the cost function was changing during the training. We're expecting that the cost after the training should be much lower than before. This would mean that NanoNeuron got smarter. The opposite is also possible. 
+
+```javascript
+console.log('Cost before the training:', trainingCostHistory[0]); // i.e. -> 4694.3335043
+console.log('Cost after the training:', trainingCostHistory[epochs - 1]); // i.e. -> 0.0000024
+```
+
+Let's take a look at NanoNeuron parameters to see what it has learned. We expect that NanoNeuron parameters `w` and `b` to be similar to ones we have in `celsiusToFahrenheit()` function (`w = 1.8` and `b = 32`) since our NanoNeuron tried to imitate it.
+
+```javascript
+console.log('NanoNeuron parameters:', {w: nanoNeuron.w, b: nanoNeuron.b}); // i.e. -> {w: 1.8, b: 31.99}
+```
+
+Evaluate our model accuracy for test data-set to see how well our NanoNeuron deals with new unknown data predictions. The cost of predictions on test sets is expected to be be close to the training cost. This would mean that NanoNeuron performs well on known and unknown data.
+
+```javascript
+[testPredictions, testCost] = forwardPropagation(nanoNeuron, xTest, yTest);
+console.log('Cost on new testing data:', testCost); // i.e. -> 0.0000023
+```
+
+Now, since we see that our NanoNeuron "kid" has performed well in the "school" during the training and that he can convert Celsius to Fahrenheit temperatures correctly even for the data it hasn't seen we can call it "smart" and ask him some questions. This was the ultimate goal of whole training process.
+
+```javascript
+const customTempInCelsius = 70;
+const customPrediction = nanoNeuron.predict(customTempInCelsius);
+console.log(`NanoNeuron "thinks" that ${customTempInCelsius}°C in Fahrenheit is:`, customPrediction); // -> 158.0002
+console.log('Correct answer is:', celsiusToFahrenheit(customTempInCelsius)); // -> 158
+```
+
+So close! As all the humans our NanoNeuron is good but not ideal :)
+
+Happy learning to you!
+
 ## Skipped machine learning concepts
 
 - Training set split 70/30.

@@ -185,7 +185,7 @@ console.log('Cost after the training:', trainingCostHistory[epochs - 1]); // i.e
 // celsiusToFahrenheit() function (w = 1.8 and b = 32) since our NanoNeuron tried to imitate it.
 console.log('NanoNeuron parameters:', {w: nanoNeuron.w, b: nanoNeuron.b}); // i.e. -> {w: 1.8, b: 31.99}
 
-// Evaluate our model accuracy for test dataset to see how well our NanoNeuron deals with new unknown data predictions.
+// Evaluate our model accuracy for test data-set to see how well our NanoNeuron deals with new unknown data predictions.
 // The cost of predictions on test sets is expected to be be close to the training cost.
 // This would mean that NanoNeuron performs well on known and unknown data.
 [testPredictions, testCost] = forwardPropagation(nanoNeuron, xTest, yTest);
