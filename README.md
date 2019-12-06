@@ -18,6 +18,26 @@ By the way the formula for converting Celsius to Fahrenheit is this:
 
 ![Celsius to Fahrenheit](https://github.com/trekhleb/nano-neuron/blob/master/assets/01_celsius_to_fahrenheit.png?raw=true)
 
+### `NanoNeuron()`
+
+Let's implement our NanoNeuron model function. It implements basic linear dependency between `x` and `y`: `y = w * x + b`. Simply saying our NanoNeuron is a "kid" that can draw the straight line in `XY` coordinates.
+
+`w`, `b` - parameters of the model.
+
+```javascript
+function NanoNeuron(w, b) {
+  // NanoNeuron knows only about these two parameters of linear function.
+  // These parameters are something that NanoNeuron is going to "learn" during the training process.
+  this.w = w;
+  this.b = b;
+  // This is the only thing that NanoNeuron can do - imitate linear dependency.
+  // It accepts some input 'x' and predicts the output 'y'. No magic here.
+  this.predict = (x) => {
+    return x * this.w + this.b;
+  }
+}
+```
+
 ## Skipped machine learning concepts
 
 - Training set split 70/30.
