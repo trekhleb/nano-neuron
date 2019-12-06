@@ -4,15 +4,15 @@
 
 ## TL;DR
 
-[NanoNeuron](https://github.com/trekhleb/nano-neuron) is _over-simplified_ version of a Neuron concept from the Neural Networks. NanoNeuron is trained to convert a temperature values from Celsius to Fahrenheit.
+[NanoNeuron](https://github.com/trekhleb/nano-neuron) is an _over-simplified_ version of the Neuron concept from Neural Networks. NanoNeuron is trained to convert a temperature values from Celsius to Fahrenheit.
 
-[NanoNeuron.js](https://github.com/trekhleb/nano-neuron/blob/master/NanoNeuron.js) code example contains 7 simple JavaScript functions (model prediction, cost calculation, forward and backwards propagation, training) that will give you a feeling of how machines can actually "learn". No 3rd-party libraries, no external data-sets and dependencies, only pure and simple JavaScript functions.
+The [NanoNeuron.js](https://github.com/trekhleb/nano-neuron/blob/master/NanoNeuron.js) code example contains 7 simple JavaScript functions (which touches on model prediction, cost calculation, forward/backwards propagation, and training) that will give you a feeling of how machines can actually "learn". No 3rd-party libraries, no external data-sets or dependencies, only pure and simple JavaScript functions.
 
-☝🏻These functions by any means are **NOT** a complete guide to machine learning. A lot of machine learning concepts are skipped and over-simplified there! This simplification is done in purpose to give the reader a really **basic** understanding and feeling of how machines can learn and ultimately to make it possible for the reader to call it not a "machine learning MAGIC" but rather "machine learning MATH" 🤓.
+☝🏻These functions are **NOT**, by any means, a complete guide to machine learning. A lot of machine learning concepts are skipped and over-simplified! This simplification is done on purpose to give the reader a really **basic** understanding and feeling of how machines can learn and ultimately to make it possible for the reader to recognize that it's not "machine learning MAGIC" but rather "machine learning MATH" 🤓.
 
-## What NanoNeuron will learn
+## What the NanoNeuron will learn
 
-You've probably heard about Neurons in the context of [Neural Networks](https://en.wikipedia.org/wiki/Neural_network). NanoNeuron that we're going to implement below is kind of it but much simpler. For simplicity reasons we're not even going to build a network on NanoNeurons. We will have it all by itself, alone, doing some magic predictions for us. Namely we will teach this one simple NanoNeuron to convert (predict) the temperature from Celsius to Fahrenheit.
+You've probably heard about Neurons in the context of [Neural Networks](https://en.wikipedia.org/wiki/Neural_network). NanoNeuron is just that but simpler and we're going to implement it from scratch. For simplicity reasons we're not even going to build a network on NanoNeurons. We will have it all working on its own, doing some magic predictions for us. Namely, we will teach this singular NanoNeuron to convert (predict) the temperature from Celsius to Fahrenheit.
 
 By the way the formula for converting Celsius to Fahrenheit is this:
 
@@ -20,11 +20,11 @@ By the way the formula for converting Celsius to Fahrenheit is this:
 
 But for now our NanoNeuron doesn't know about it...
 
-### NanoNeuron model
+### The NanoNeuron model
 
-Let's implement our NanoNeuron model function. It implements basic linear dependency between `x` and `y` which looks like `y = w * x + b`. Simply saying our NanoNeuron is a "kid" that can draw the straight line in `XY` coordinates.
+Let's implement our NanoNeuron model function. It implements basic linear dependency between `x` and `y` which looks like `y = w * x + b`. Simply saying our NanoNeuron is a "kid" in a "school" that is being taught to draw the straight line in `XY` coordinates.
 
-Variables `w`, `b` are parameters of the model. NanoNeuron knows only about these two parameters of linear function.
+Variables `w`, `b` are parameters of the model. NanoNeuron knows only about these two parameters of the linear function.
 These parameters are something that NanoNeuron is going to "learn" during the training process.
 
 The only thing that NanoNeuron can do is to imitate linear dependency. In its `predict()` method it accepts some input `x` and predicts the output `y`. No magic here.
@@ -43,7 +43,7 @@ _(...wait... [linear regression](https://en.wikipedia.org/wiki/Linear_regression
 
 ### Celsius to Fahrenheit conversion
 
-The temperature value in Celsius can be converted to Fahrenheit using the following formula: `f = 1.8 * c + 32`, where `c` is a temperature in Celsius and `f` is calculated temperature in Fahrenheit.
+The temperature value in Celsius can be converted to Fahrenheit using the following formula: `f = 1.8 * c + 32`, where `c` is a temperature in Celsius and `f` is the calculated temperature in Fahrenheit.
 
 ```javascript
 function celsiusToFahrenheit(c) {
@@ -62,11 +62,11 @@ This is how the Celsius to Fahrenheit conversion function looks like:
 
 ### Generating data-sets
 
-Before the training we need to generate **training** and **test data-sets** based on `celsiusToFahrenheit()` function. Data-sets consist of pairs of input values and correctly labeled output values.
+Before the training we need to generate **training** and **test data-sets** based on the `celsiusToFahrenheit()` function. Data-sets consist of pairs of input values and correctly labeled output values.
 
-> In real life in most of the cases this data would be rather collected than generated. For example we might have a set of images of hand-drawn numbers and corresponding set of numbers that explain what number is written on each picture.
+> In real life, in most of cases, this data would be collected rather than generated. For example, we might have a set of images of hand-drawn numbers and the corresponding set of numbers that explains what number is written on each picture.
 
-We will use TRAINING examples data to train our NanoNeuron. Before our NanoNeuron will grow and will be able to make decisions by its own we need to teach it what is right and what is wrong using training examples.
+We will use TRAINING example data to train our NanoNeuron. Before our NanoNeuron will grow and be able to make decisions on its own, we need to teach it what is right and what is wrong using training examples.
 
 We will use TEST examples to evaluate how well our NanoNeuron performs on the data that it didn't see during the training. This is the point where we could see that our "kid" has grown and can make decisions on its own.
 
@@ -100,11 +100,11 @@ function generateDataSets() {
 
 ### The cost (the error) of prediction
 
-We need to have some metric that will show how close our model's prediction to correct values. The calculation of the cost (the mistake) between the correct output value of `y` and `prediction` that NanoNeuron made will be made using the following formula:
+We need to have some metric that will show us how close our model's prediction is to correct values. The calculation of the cost (the mistake) between the correct output value of `y` and `prediction`, that our NanoNeuron created, will be made using the following formula:
 
 ![Prediction Cost](https://github.com/trekhleb/nano-neuron/blob/master/assets/02_cost_function.png?raw=true)
 
-This is a simple difference between two values. The closer the values to each other the smaller the difference. We're using power of `2` here just to get rid of negative numbers so that `(1 - 2) ^ 2` would be the same as `(2 - 1) ^ 2`. Division by `2` is happening just to simplify further backward propagation formula (see below).
+This is a simple difference between two values. The closer the values are to each other, the smaller the difference. We're using a power of `2` here just to get rid of negative numbers so that `(1 - 2) ^ 2` would be the same as `(2 - 1) ^ 2`. Division by `2` is happening just to simplify further the backward propagation formula (see below).
 
 The cost function in this case will be as simple as:
 
@@ -116,15 +116,15 @@ function predictionCost(y, prediction) {
 
 ### Forward propagation
 
-To do forward propagation means to do a prediction for all training examples from `xTrain` and `yTrain` data-sets and to calculate the average cost of those prediction along the way.
+To do forward propagation means to do a prediction for all training examples from `xTrain` and `yTrain` data-sets and to calculate the average cost of those predictions along the way.
 
-We just let our NanoNeuron say its opinion at this point, just ask him to guess how to convert the temperature. It might be stupidly wrong here. The average cost will show how wrong our model is right now. This cost value is really valuable since by changing the NanoNeuron parameters `w` and `b` and by doing the forward propagation again we will be able to evaluate if NanoNeuron became smarter or not after parameters changes.
+We just let our NanoNeuron say its opinion, at this point, by just allowing it to guess how to convert the temperature. It might be stupidly wrong here. The average cost will show us how wrong our model is right now. This cost value is really important since changing the NanoNeuron parameters `w` and `b`, and by doing the forward propagation again; we will be able to evaluate if our NanoNeuron became smarter or not after these parameters change.
 
 The average cost will be calculated using the following formula:
 
 ![Average Cost](https://github.com/trekhleb/nano-neuron/blob/master/assets/03_average_cost_function.png?raw=true)
 
-Where `m` is a number of training examples (in our case is `100`).
+Where `m` is a number of training examples (in our case: `100`).
 
 Here is how we may implement it in code:
 
@@ -146,23 +146,23 @@ function forwardPropagation(model, xTrain, yTrain) {
 
 ### Backward propagation
 
-Now when we know how right or wrong our NanoNeuron's predictions are (based on average cost at this point) what should we do to make predictions more precise?
+When we know how right or wrong our NanoNeuron's predictions are (based on average cost at this point) what should we do to make the predictions more precise?
 
-The backward propagation is the answer to this question. Backward propagation is the process of evaluating the cost of prediction and adjusting the NanoNeuron's parameters `w` and `b` so that next predictions would be more precise.
+The backward propagation gives us the answer to this question. Backward propagation is the process of evaluating the cost of prediction and adjusting the NanoNeuron's parameters `w` and `b` so that next and future predictions would be more precise.
 
-This is the place where machine learning looks like a magic 🧞‍♂️. The key concept here is **derivative** which show what step to take to get closer to the cost function minimum.
+This is the place where machine learning looks like magic 🧞‍♂️. The key concept here is the **derivative** which shows what step to take to get closer to the cost function minimum.
 
-Remember, finding the minimum of a cost function is the ultimate goal of training process. If we will find such values of `w` and `b` that our average cost function will be small it would mean that NanoNeuron model does really good and precise predictions.
+Remember, finding the minimum of a cost function is the ultimate goal of the training process. If we find such values for `w` and `b` such that our average cost function will be small, it would mean that the NanoNeuron model does really good and precise predictions.
 
-Derivatives are big separate topic that we will not cover in this article. [MathIsFun](https://www.mathsisfun.com/calculus/derivatives-introduction.html) is a good resource to get a basic understanding of it.
+Derivatives are a big and separate topic that we will not cover in this article. [MathIsFun](https://www.mathsisfun.com/calculus/derivatives-introduction.html) is a good resource to get a basic understanding of it.
 
-One thing about derivatives that will help you to understand how backward propagation works is that derivative by its meaning is a tangent line to the function curve that points out the direction to the function minimum.
+One thing about derivatives that will help you to understand how backward propagation works is that the derivative, by its meaning, is a tangent line to the function curve that points toward the direction of the function minimum.
 
 ![Derivative slope](https://www.mathsisfun.com/calculus/images/slope-x2-2.svg)
 
 _Image source: [MathIsFun](https://www.mathsisfun.com/calculus/derivatives-introduction.html)_
 
-For example on the plot above you see that if we're at the point of `(x=2, y=4)` than the slope tells us to go `left` and `down` to get to function minimum. Also notice that the bigger the slope the faster we should move to the minimum.
+For example, on the plot above, you can see that if we're at the point of `(x=2, y=4)` then the slope tells us to go `left` and `down` to get to the function minimum. Also notice that the bigger the slope, the faster we should move to the minimum.
 
 The derivatives of our `averageCost` function for parameters `w` and `b` looks like this:
 
@@ -170,7 +170,7 @@ The derivatives of our `averageCost` function for parameters `w` and `b` looks l
 
 ![dB](https://github.com/trekhleb/nano-neuron/blob/master/assets/04_db.png?raw=true)
 
-Where `m` is a number of training examples (in our case is `100`).
+Where `m` is a number of training examples (in our case: `100`).
 
 _You may read more about derivative rules and how to get a derivative of complex functions [here](https://www.mathsisfun.com/calculus/derivatives-rules.html)._
 
@@ -194,17 +194,17 @@ function backwardPropagation(predictions, xTrain, yTrain) {
 
 ### Training the model
 
-Now we know how to evaluate the correctness of our model for all training set examples (_forward propagation_), we also know how to do small adjustments to parameters `w` and `b` of the NanoNeuron model (_backward propagation_). But the issue is that if we will run forward propagation and then backward propagation only once it won't be enough for our model to learn any laws/trends from the training data. You may compare it with attending a one day of elementary school for the kid. He/she should go to the school not once but day after day and year after year to learn something.
+Now we know how to evaluate the correctness of our model for all training set examples (_forward propagation_). We also know how to do small adjustments to parameters `w` and `b` of our NanoNeuron model (_backward propagation_). But the issue is that if we run forward propagation and then backward propagation only once, it won't be enough for our model to learn any laws/trends from the training data. You may compare it with attending a one day of elementary school for the kid. He/she should go to the school not once but day after day and year after year to learn something.
 
-So we need to repeat forward and backward propagation for our model many times. That is exactly what `trainModel()` function does. it is like a "teacher" for our NanoNeuron model:
+So we need to repeat forward and backward propagation for our model many times. That is exactly what the `trainModel()` function does. It is like a "teacher" for our NanoNeuron model:
 
-- it will spend some time (`epochs`) with our yet slightly stupid NanoNeuron model and try to train/teach it,
+- it will spend some time (`epochs`) with our slightly stupid NanoNeuron model and try to train/teach it,
 - it will use specific "books" (`xTrain` and `yTrain` data-sets) for training,
 - it will push our kid to learn harder (faster) by using a learning rate parameter `alpha`
 
-A few words about learning rate `alpha`. This is just a multiplier for `dW` and `dB` values we have calculated during the backward propagation. So, derivative pointed us out to the direction we need to take to find a minimum of the cost function (`dW` and `dB` sign) and it also pointed us out how fast we need to go to that direction (`dW` and `dB` absolute value). Now we need to multiply those step sizes to `alpha` just to make our movement to the minimum faster or slower. Sometimes if we will use big value of `alpha` we might simple jump over the minimum and never find it.
+A few words about the learning rate `alpha`. This is just a multiplier for `dW` and `dB` values we have calculated during the backward propagation. So, derivative pointed us toward the direction we need to take to find a minimum of the cost function (`dW` and `dB` sign) and it also showed us how fast we need to go in that direction (absolute values of `dW` and `dB`). Now we need to multiply those step sizes to `alpha` just to adjust our movement to the minimum faster or slower. Sometimes if we use big values for `alpha`, we might simply jump over the minimum and never find it.
 
-The analogy with the teacher would be that the harder he pushes our "nano-kid" the faster our "nano-kid" will learn but if the teacher will push too hard the "kid" will have a nervous breakdown and won't be able to learn anything 🤯.
+The analogy with the teacher would be that the harder s/he pushes our "nano-kid" the faster our "nano-kid" will learn but if the teacher pushes too hard, the "kid" will have a nervous breakdown and won't be able to learn anything 🤯.
 
 Here is how we're going to update our model's `w` and `b` params:
 
@@ -212,7 +212,7 @@ Here is how we're going to update our model's `w` and `b` params:
 
 ![b](https://github.com/trekhleb/nano-neuron/blob/master/assets/05_b.png?raw=true)
 
-And here is out trainer function:
+And here is our trainer function:
 
 ```javascript
 function trainModel({model, epochs, alpha, xTrain, yTrain}) {
@@ -237,11 +237,11 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
 }
 ```
 
-### Putting all pieces together
+### Putting all the pieces together
 
 Now let's use the functions we have created above.
 
-Let's create our NanoNeuron model instance. At this moment NanoNeuron doesn't know what values should be set for parameters `w` and `b`. So let's set up `w` and `b` randomly.
+Let's create our NanoNeuron model instance. At this moment the NanoNeuron doesn't know what values should be set for parameters `w` and `b`. So let's set up `w` and `b` randomly.
 
 ```javascript
 const w = Math.random(); // i.e. -> 0.9492
@@ -255,7 +255,7 @@ Generate training and test data-sets.
 const [xTrain, yTrain, xTest, yTest] = generateDataSets();
 ```
 
-Let's train the model with small (`0.0005`) steps during the `70000` epochs. You can play with these parameters, they are being defined empirically.
+Let's train the model with small incremental (`0.0005`) steps for `70000` epochs. You can play with these parameters, they are being defined empirically.
 
 ```javascript
 const epochs = 70000;
@@ -274,20 +274,20 @@ This is how the training cost changes over the epochs. On the `x` axes is the ep
 
 ![Training process](https://github.com/trekhleb/nano-neuron/blob/master/assets/06-training-process.png?raw=true)
 
-Let's take a look at NanoNeuron parameters to see what it has learned. We expect that NanoNeuron parameters `w` and `b` to be similar to ones we have in `celsiusToFahrenheit()` function (`w = 1.8` and `b = 32`) since our NanoNeuron tried to imitate it.
+Let's take a look at NanoNeuron parameters to see what it has learned. We expect that NanoNeuron parameters `w` and `b` to be similar to ones we have in the `celsiusToFahrenheit()` function (`w = 1.8` and `b = 32`) since our NanoNeuron tried to imitate it.
 
 ```javascript
 console.log('NanoNeuron parameters:', {w: nanoNeuron.w, b: nanoNeuron.b}); // i.e. -> {w: 1.8, b: 31.99}
 ```
 
-Evaluate our model accuracy for test data-set to see how well our NanoNeuron deals with new unknown data predictions. The cost of predictions on test sets is expected to be be close to the training cost. This would mean that NanoNeuron performs well on known and unknown data.
+Evaluate the model accuracy for the test data-set to see how well our NanoNeuron deals with new unknown data predictions. The cost of predictions on test sets is expected to be close to the training cost. This would mean that our NanoNeuron performs well on known and unknown data.
 
 ```javascript
 [testPredictions, testCost] = forwardPropagation(nanoNeuron, xTest, yTest);
 console.log('Cost on new testing data:', testCost); // i.e. -> 0.0000023
 ```
 
-Now, since we see that our NanoNeuron "kid" has performed well in the "school" during the training and that he can convert Celsius to Fahrenheit temperatures correctly even for the data it hasn't seen we can call it "smart" and ask him some questions. This was the ultimate goal of whole training process.
+Now, since we see that our NanoNeuron "kid" has performed well in the "school" during the training and that he can convert Celsius to Fahrenheit temperatures correctly, even for the data it hasn't seen, we can call it "smart" and ask him some questions. This was the ultimate goal of the entire training process.
 
 ```javascript
 const tempInCelsius = 70;
@@ -296,7 +296,7 @@ console.log(`NanoNeuron "thinks" that ${tempInCelsius}°C in Fahrenheit is:`, cu
 console.log('Correct answer is:', celsiusToFahrenheit(tempInCelsius)); // -> 158
 ```
 
-So close! As all the humans our NanoNeuron is good but not ideal :)
+So close! As all of us humans, our NanoNeuron is good but not ideal :)
 
 Happy learning to you!
 
@@ -317,26 +317,26 @@ node ./NanoNeuron.js
 
 The following machine learning concepts were skipped and simplified for simplicity of explanation.
 
-**Train/test sets splitting**
+**Training/testing data-set splitting**
 
-Normally you have one big set of data. Depending on the number of examples in that set you may want to split it in proportion of 70/30 for train/test sets. The data in the set should be randomly shuffled before the split. If the number of examples is big (i.e. millions) then the split might happened in proportions that are closer to 90/10 or 95/5 for train/test data-sets.
+Normally you have one big set of data. Depending on the number of examples in that set, you may want to split it in proportion of 70/30 for train/test sets. The data in the set should be randomly shuffled before the split. If the number of examples is big (i.e. millions) then the split might happen in proportions that are closer to 90/10 or 95/5 for train/test data-sets.
 
 **The network brings the power**
 
-Normally you won't notice the usage of just one standalone neuron. The power is in the [network](https://en.wikipedia.org/wiki/Neural_network) of such neurons. Network might learn much more complex features. NanoNeuron alone looks more like a simple [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.) than neural network.
+Normally you won't notice the usage of just one standalone neuron. The power is in the [network](https://en.wikipedia.org/wiki/Neural_network) of such neurons. The network might learn much more complex features. NanoNeuron alone looks more like a simple [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.) than a neural network.
 
 **Input normalization**
 
-Before the training it would be better to [normalize input values](https://www.jeremyjordan.me/batch-normalization/).
+Before the training, it would be better to [normalize input values](https://www.jeremyjordan.me/batch-normalization/).
 
 **Vectorized implementation**
 
-For networks the vectorized (matrix) calculations work much faster than `for` loops. Normally forward/backward propagation works much faster if it is implemented in vectorized form and calculated using, for example, [Numpy](https://numpy.org/) Python library.
+For networks, the vectorized (matrix) calculations work much faster than `for` loops. Normally forward/backward propagation works much faster if it is implemented in vectorized form and calculated using, for example, [Numpy](https://numpy.org/) Python library.
 
-**Minimum of cost function**
+**Minimum of the cost function**
 
-The cost function that we were using in this example is over-simplified. It should have [logarithmic components](https://stackoverflow.com/questions/32986123/why-the-cost-function-of-logistic-regression-has-a-logarithmic-expression/32998675). Changing the cost function will also change its derivatives so the back propagation step will also use different formulas.
+The cost function that we were using in this example is over-simplified. It should have [logarithmic components](https://stackoverflow.com/questions/32986123/why-the-cost-function-of-logistic-regression-has-a-logarithmic-expression/32998675). Changing the cost function will also change its derivatives so the back propagation step would also use different formulas.
 
 **Activation function**
 
-Normally the output of a neuron should be passed through activation function like [Sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) or [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) or others.
+Normally the output of a neuron should be passed through an activation function like [Sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) or [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) or others.
