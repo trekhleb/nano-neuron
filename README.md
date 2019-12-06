@@ -4,15 +4,15 @@
 
 ## TL;DR
 
-[NanoNeuron](https://github.com/trekhleb/nano-neuron) is an _over-simplified_ version of the Neuron concept from Neural Networks. NanoNeuron is trained to convert a temperature values from Celsius to Fahrenheit.
+[NanoNeuron](https://github.com/trekhleb/nano-neuron) is an _over-simplified_ version of the Neuron concept from Neural Networks. NanoNeuron is trained to convert temperature values from Celsius to Fahrenheit.
 
 The [NanoNeuron.js](https://github.com/trekhleb/nano-neuron/blob/master/NanoNeuron.js) code example contains 7 simple JavaScript functions (which touches on model prediction, cost calculation, forward/backwards propagation, and training) that will give you a feeling of how machines can actually "learn". No 3rd-party libraries, no external data-sets or dependencies, only pure and simple JavaScript functions.
 
 ☝🏻These functions are **NOT**, by any means, a complete guide to machine learning. A lot of machine learning concepts are skipped and over-simplified! This simplification is done on purpose to give the reader a really **basic** understanding and feeling of how machines can learn and ultimately to make it possible for the reader to recognize that it's not "machine learning MAGIC" but rather "machine learning MATH" 🤓.
 
-## What the NanoNeuron will learn
+## What our NanoNeuron will learn
 
-You've probably heard about Neurons in the context of [Neural Networks](https://en.wikipedia.org/wiki/Neural_network). NanoNeuron is just that but simpler and we're going to implement it from scratch. For simplicity reasons we're not even going to build a network on NanoNeurons. We will have it all working on its own, doing some magic predictions for us. Namely, we will teach this singular NanoNeuron to convert (predict) the temperature from Celsius to Fahrenheit.
+You've probably heard about Neurons in the context of [Neural Networks](https://en.wikipedia.org/wiki/Neural_network). NanoNeuron is just that but simpler and we're going to implement it from scratch. For simplicity reasons we're not even going to build a network on NanoNeurons. We will have it all working on its own, doing some magical predictions for us. Namely, we will teach this singular NanoNeuron to convert (predict) the temperature from Celsius to Fahrenheit.
 
 By the way the formula for converting Celsius to Fahrenheit is this:
 
