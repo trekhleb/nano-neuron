@@ -39,7 +39,7 @@ function NanoNeuron(w, b) {
 }
 ```
 
-_(...wait... isn't it look like a [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.)?)_  🧐
+_(...wait... [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.) is it you?)_  🧐
 
 ### Celsius to Fahrenheit conversion
 
