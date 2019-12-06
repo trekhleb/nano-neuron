@@ -231,6 +231,24 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
 }
 ```
 
+### Putting all pieces together
+
+Now let's use the functions we have created above.
+
+Let's create our NanoNeuron model instance. At this moment NanoNeuron doesn't know what values should be set for parameters `w` and `b`. So let's set up `w` and `b` randomly.
+
+```javascript
+const w = Math.random(); // i.e. -> 0.9492
+const b = Math.random(); // i.e. -> 0.4570
+const nanoNeuron = new NanoNeuron(w, b);
+```
+
+Generate training and test data-sets.
+
+```javascript
+const [xTrain, yTrain, xTest, yTest] = generateDataSets();
+```
+
 ## Skipped machine learning concepts
 
 - Training set split 70/30.
