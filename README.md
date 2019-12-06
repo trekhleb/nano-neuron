@@ -18,6 +18,8 @@ By the way the formula for converting Celsius to Fahrenheit is this:
 
 ![Celsius to Fahrenheit](https://github.com/trekhleb/nano-neuron/blob/master/assets/01_celsius_to_fahrenheit.png?raw=true)
 
+But for now our NanoNeuron doesn't know about it...
+
 ### NanoNeuron model
 
 Let's implement our NanoNeuron model function. It implements basic linear dependency between `x` and `y` which looks like `y = w * x + b`. Simply saying our NanoNeuron is a "kid" that can draw the straight line in `XY` coordinates.
@@ -36,6 +38,21 @@ function NanoNeuron(w, b) {
   }
 }
 ```
+
+### Celsius to Fahrenheit conversion
+
+The temperature value in Celsius can be converted to Fahrenheit using the following formula: `f = 1.8 * c + 32`.
+
+```javascript
+function celsiusToFahrenheit(c) {
+  const w = 1.8;
+  const b = 32;
+  const f = c * w + b;
+  return f;
+};
+```
+
+Ultimately we want to teach our NanoNeuron to imitate this function (to learn that `w = 1.8` and `b = 32`) without knowing these parameters in advance.
 
 ## Skipped machine learning concepts
 
