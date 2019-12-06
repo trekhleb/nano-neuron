@@ -302,9 +302,13 @@ Normally you have one big set of data. Depending on the number of examples in th
 
 **The network brings the power**
 
-Normally you won't notice the usage of just one standalone neuron. The power is in the network of such neurons. Network might learn much more complex features.
+Normally you won't notice the usage of just one standalone neuron. The power is in the [network](https://en.wikipedia.org/wiki/Neural_network) of such neurons. Network might learn much more complex features.
 
-NanoNeuron alone looks more like a simple linear regression than neural network.
+NanoNeuron alone looks more like a simple [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.) than neural network.
+
+**Input normalization**
+
+Before the training it would be better to [normalize input values](https://www.jeremyjordan.me/batch-normalization/).
 
 **Vectorized implementation**
 
@@ -312,14 +316,10 @@ For networks the vectorized (matrix) calculations work much faster than `for` lo
 
 **Minimum of cost function**
 
-No local optimum. Use logarithm.
+The cost function that we were using in this example is over-simplified. It should have [logarithmic components](https://stackoverflow.com/questions/32986123/why-the-cost-function-of-logistic-regression-has-a-logarithmic-expression/32998675).
+
+Changing the cost function will also change its derivatives so the back propagation step will also use different formulas.
 
 **Activation function**
 
-Normally the output of a neuron uses activation function like Sigmoud ot ReLU.
-
-**Input normalization**
-
-Before the training it would be better to normalize input values so that all of them were closer to `[-1, 1]`.
-
-- Activation function.
+Normally the output of a neuron should be passed through activation function like [Sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) ot [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) or others.
