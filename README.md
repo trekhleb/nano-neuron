@@ -92,6 +92,22 @@ function generateDataSets() {
 }
 ```
 
+### The cost (the error) of prediction
+
+We need to have some metric that will show how close our model's prediction to correct values. The calculation of the cost (the mistake) between the correct output value of `y` and `prediction` that NanoNeuron made will be made using the following formula:
+
+![Celsius to Fahrenheit](https://github.com/trekhleb/nano-neuron/blob/master/assets/02_cost_function.png?raw=true)
+
+This is a simple difference between two values. The closer the values to each other the smaller the difference. We're using power of `2` here just to get rid of negative numbers so that `(1 - 2) ^ 2` would be the same as `(2 - 1) ^ 2`. Division by `2` is happening just to simplify further backward propagation formula (see below).
+
+The cost function in this case will be as simple as:
+
+```javascript
+function predictionCost(y, prediction) {
+  return (y - prediction) ** 2 / 2; // i.e. -> 235.6
+}
+```
+
 ## Skipped machine learning concepts
 
 - Training set split 70/30.
