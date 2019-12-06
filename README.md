@@ -302,9 +302,7 @@ Normally you have one big set of data. Depending on the number of examples in th
 
 **The network brings the power**
 
-Normally you won't notice the usage of just one standalone neuron. The power is in the [network](https://en.wikipedia.org/wiki/Neural_network) of such neurons. Network might learn much more complex features.
-
-NanoNeuron alone looks more like a simple [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.) than neural network.
+Normally you won't notice the usage of just one standalone neuron. The power is in the [network](https://en.wikipedia.org/wiki/Neural_network) of such neurons. Network might learn much more complex features. NanoNeuron alone looks more like a simple [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.) than neural network.
 
 **Input normalization**
 
@@ -316,9 +314,7 @@ For networks the vectorized (matrix) calculations work much faster than `for` lo
 
 **Minimum of cost function**
 
-The cost function that we were using in this example is over-simplified. It should have [logarithmic components](https://stackoverflow.com/questions/32986123/why-the-cost-function-of-logistic-regression-has-a-logarithmic-expression/32998675).
-
-Changing the cost function will also change its derivatives so the back propagation step will also use different formulas.
+The cost function that we were using in this example is over-simplified. It should have [logarithmic components](https://stackoverflow.com/questions/32986123/why-the-cost-function-of-logistic-regression-has-a-logarithmic-expression/32998675). Changing the cost function will also change its derivatives so the back propagation step will also use different formulas.
 
 **Activation function**
 
