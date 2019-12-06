@@ -211,20 +211,15 @@ And here is out trainer function:
 ```javascript
 function trainModel({model, epochs, alpha, xTrain, yTrain}) {
   // The is the history array of how NanoNeuron learns.
-  // It might have a good or bad "marks" (costs) during the learning process.
   const costHistory = [];
 
   // Let's start counting epochs.
   for (let epoch = 0; epoch < epochs; epoch += 1) {
-    // Forward propagation for all training examples.
-    // Let's save the cost for current iteration.
-    // This will help us to analyse how our model learns.
+    // Forward propagation.
     const [predictions, cost] = forwardPropagation(model, xTrain, yTrain);
     costHistory.push(cost);
   
-    // Backward propagation. Let's learn some lessons from the mistakes.
-    // This function returns smalls steps we need to take for params 'w' and 'b'
-    // to make predictions more accurate.
+    // Backward propagation.
     const [dW, dB] = backwardPropagation(predictions, xTrain, yTrain);
   
     // Adjust our NanoNeuron parameters to increase accuracy of our model predictions.
@@ -232,7 +227,6 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
     nanoNeuron.b += alpha * dB;
   }
 
-  // Let's return cost history from the function to be able to log or to plot it after training.
   return costHistory;
 }
 ```
