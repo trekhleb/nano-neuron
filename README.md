@@ -18,7 +18,7 @@ By the way the formula for converting Celsius to Fahrenheit is this:
 
 ![Celsius to Fahrenheit](https://github.com/trekhleb/nano-neuron/blob/master/assets/01_celsius_to_fahrenheit.png?raw=true)
 
-### `NanoNeuron()`
+### NanoNeuron model
 
 Let's implement our NanoNeuron model function. It implements basic linear dependency between `x` and `y`: `y = w * x + b`. Simply saying our NanoNeuron is a "kid" that can draw the straight line in `XY` coordinates.
 
