@@ -162,7 +162,7 @@ One thing about derivatives that will help you to understand how backward propag
 
 _Image source: [MathIsFun](https://www.mathsisfun.com/calculus/derivatives-introduction.html)_
 
-For example on the plot above you see that if we're at the point of `(x=2, y=4)` than the slope tells us to go `left` and `down` to get to function minimum. Also notice that the bigger the slope the faster we should move to the minimum.
+For example on the plot above you see that if we're at the point of `(x=2, y=4)` then the slope tells us to go `left` and `down` to get to function minimum. Also notice that the bigger the slope the faster we should move to the minimum.
 
 The derivatives of our `averageCost` function for parameters `w` and `b` looks like this:
 
