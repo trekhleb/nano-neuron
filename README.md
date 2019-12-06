@@ -136,6 +136,48 @@ function forwardPropagation(model, xTrain, yTrain) {
 }
 ```
 
+### Backward propagation
+
+Now when we know how right or wrong our NanoNeuron's predictions are (based on average cost at this point) what should we do to make predictions more precise?
+
+The backward propagation is the answer to this question. Backward propagation is the process of evaluating the cost of prediction and adjusting the NanoNeuron's parameters `w` and `b` so that next predictions would be more precise.
+
+This is the place where machine learning looks like a magic 🧞‍♂️. The key concept here is **derivative** which show what step to take to get closer to the cost function minimum.
+
+Remember, finding the minimum of a cost function is the ultimate goal of training process. If we will find such values of `w` and `b` that our average cost function will be small it would mean that NanoNeuron model does really good and precise predictions.
+
+Derivatives are big separate topic that we will not cover in this article. [MathIsFun](https://www.mathsisfun.com/calculus/derivatives-introduction.html) is a good resource to get a basic understanding of it.
+
+One thing about derivatives that will help you to understand how backward propagation works is that derivative by its meaning is a tangent line to the function curve that points out the direction to the function minimum.
+
+![Derivative slope](https://www.mathsisfun.com/calculus/images/slope-x2-2.svg)
+
+For example on the plot above you see that if we're at the point of `(x=2, y=4)` than the slope tells us to go `left` and `down` to get to function minimum. Also notice that the bigger the slope the faster we should move to the minimum.
+
+```javascript
+function backwardPropagation(predictions, xTrain, yTrain) {
+  const m = xTrain.length;
+  // At the beginning we don't know in which way our parameters 'w' and 'b' need to be changed.
+  // Therefore we're setting up the changing steps for each parameters to 0.
+  let dW = 0;
+  let dB = 0;
+  for (let i = 0; i < m; i += 1) {
+    // This is derivative of the cost function by 'w' param.
+    // It will show in which direction (positive/negative sign of 'dW') and
+    // how fast (the absolute value of 'dW') the 'w' param needs to be changed.
+    dW += (yTrain[i] - predictions[i]) * xTrain[i];
+    // This is derivative of the cost function by 'b' param.
+    // It will show in which direction (positive/negative sign of 'dB') and
+    // how fast (the absolute value of 'dB') the 'b' param needs to be changed.
+    dB += yTrain[i] - predictions[i];
+  }
+  // We're interested in average deltas for each params.
+  dW /= m;
+  dB /= m;
+  return [dW, dB];
+}
+```
+
 ## Skipped machine learning concepts
 
 - Training set split 70/30.

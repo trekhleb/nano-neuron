@@ -94,7 +94,7 @@ function forwardPropagation(model, xTrain, yTrain) {
 }
 
 // Backward propagation.
-// This is the place where machine learning mistakenly looks like a magic.
+// This is the place where machine learning looks like a magic.
 // The key concept here is derivative which shows what step to take to get closer
 // to the function minimum. Remember, finding the minimum of a cost function is the
 // ultimate goal of training process. The cost function looks like this:
