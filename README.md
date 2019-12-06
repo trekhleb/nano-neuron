@@ -12,7 +12,7 @@
 
 ## What NanoNeuron will learn
 
-You've probably heard about Neurons in the context of [Neural Networks](https://en.wikipedia.org/wiki/Neural_network). NanoNeuron that we're going to implement below is kind of it but simpler. For simplicity reasons we're not even going to build a network on NanoNeurons. We will have it all by itself, alone, doing some magic predictions for us. Namely we will teach this one simple NanoNeuron to convert (predict) the temperature from Celsius to Fahrenheit.
+You've probably heard about Neurons in the context of [Neural Networks](https://en.wikipedia.org/wiki/Neural_network). NanoNeuron that we're going to implement below is kind of it but much simpler. For simplicity reasons we're not even going to build a network on NanoNeurons. We will have it all by itself, alone, doing some magic predictions for us. Namely we will teach this one simple NanoNeuron to convert (predict) the temperature from Celsius to Fahrenheit.
 
 By the way the formula for converting Celsius to Fahrenheit is this:
 
@@ -38,6 +38,8 @@ function NanoNeuron(w, b) {
   }
 }
 ```
+
+_(...wait... isn't it look like a [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.)?)_  🧐
 
 ### Celsius to Fahrenheit conversion
 
@@ -292,8 +294,32 @@ Happy learning to you!
 
 ## Skipped machine learning concepts
 
-- Training set split 70/30.
-- Input normalization.
-- Vectorized implementation instead of 'for' loop.
+The following machine learning concepts were skipped and simplified for simplicity of explanation.
+
+**Train/test sets splitting**
+
+Normally you have one big set of data. Depending on the number of examples in that set you may want to split it in proportion of 70/30 for train/test sets. The data in the set should be randomly shuffled before the split. If the number of examples is big (i.e. millions) then the split might happened in proportions that are closer to 90/10 or 95/5 for train/test data-sets.
+
+**The network brings the power**
+
+Normally you won't notice the usage of just one standalone neuron. The power is in the network of such neurons. Network might learn much more complex features.
+
+NanoNeuron alone looks more like a simple linear regression than neural network.
+
+**Vectorized implementation**
+
+For networks the vectorized (matrix) calculations work much faster than `for` loops. Normally forward/backward propagation works much faster if it is implemented in vectorized form and calculated using, for example, [Numpy](https://numpy.org/) Python library.
+
+**Minimum of cost function**
+
+No local optimum. Use logarithm.
+
+**Activation function**
+
+Normally the output of a neuron uses activation function like Sigmoud ot ReLU.
+
+**Input normalization**
+
+Before the training it would be better to normalize input values so that all of them were closer to `[-1, 1]`.
+
 - Activation function.
-- No local optimum. Use logarithm.
