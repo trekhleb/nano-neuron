@@ -56,6 +56,8 @@ function celsiusToFahrenheit(c) {
 
 Ultimately we want to teach our NanoNeuron to imitate this function (to learn that `w = 1.8` and `b = 32`) without knowing these parameters in advance.
 
+This is how the Celsius to Fahrenheit conversion function looks like:
+
 ![Celsius to Fahrenheit conversion](https://github.com/trekhleb/nano-neuron/blob/master/assets/07-converter.png?raw=true)
 
 ### Generating data-sets
