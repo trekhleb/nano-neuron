@@ -292,6 +292,19 @@ So close! As all the humans our NanoNeuron is good but not ideal :)
 
 Happy learning to you!
 
+## How to launch NanoNeuron
+
+You may clone the repository and run it locally:
+
+```bash
+git clone https://github.com/trekhleb/nano-neuron.git
+cd nano-neuron
+```
+
+```bash
+node ./NanoNeuron.js
+```
+
 ## Skipped machine learning concepts
 
 The following machine learning concepts were skipped and simplified for simplicity of explanation.
