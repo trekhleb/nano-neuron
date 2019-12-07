@@ -39,7 +39,7 @@ function NanoNeuron(w, b) {
 }
 ```
 
-_(...wait... [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.) is it you?)_  🧐
+_(...wait... [linear regression](https://en.wikipedia.org/wiki/Linear_regression) is it you?)_  🧐
 
 ### Celsius to Fahrenheit conversion
 
@@ -323,7 +323,7 @@ Normally you have one big set of data. Depending on the number of examples in th
 
 **The network brings the power**
 
-Normally you won't notice the usage of just one standalone neuron. The power is in the [network](https://en.wikipedia.org/wiki/Neural_network) of such neurons. The network might learn much more complex features. NanoNeuron alone looks more like a simple [linear regression](https://en.wikipedia.org/wiki/Linear_regression#:~:targetText=In%20statistics%2C%20linear%20regression%20is,is%20called%20simple%20linear%20regression.) than a neural network.
+Normally you won't notice the usage of just one standalone neuron. The power is in the [network](https://en.wikipedia.org/wiki/Neural_network) of such neurons. The network might learn much more complex features. NanoNeuron alone looks more like a simple [linear regression](https://en.wikipedia.org/wiki/Linear_regression) than a neural network.
 
 **Input normalization**
 
