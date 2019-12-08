@@ -134,7 +134,7 @@ function forwardPropagation(model, xTrain, yTrain) {
   const predictions = [];
   let cost = 0;
   for (let i = 0; i < m; i += 1) {
-    const prediction = nanoNeuron.predict(xTrain[i]);
+    const prediction = model.predict(xTrain[i]);
     cost += predictionCost(yTrain[i], prediction);
     predictions.push(prediction);
   }
@@ -229,8 +229,8 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
     const [dW, dB] = backwardPropagation(predictions, xTrain, yTrain);
   
     // Adjust our NanoNeuron parameters to increase accuracy of our model predictions.
-    nanoNeuron.w += alpha * dW;
-    nanoNeuron.b += alpha * dB;
+    model.w += alpha * dW;
+    model.b += alpha * dB;
   }
 
   return costHistory;
