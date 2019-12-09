@@ -2,6 +2,8 @@
 
 > 7 simple JavaScript functions that will give you a feeling of how machines can actually "learn".
 
+_In other languages: [Русский](README.ru-RU.md)_
+
 ## TL;DR
 
 [NanoNeuron](https://github.com/trekhleb/nano-neuron) is an _over-simplified_ version of the Neuron concept from Neural Networks. NanoNeuron is trained to convert temperature values from Celsius to Fahrenheit.
