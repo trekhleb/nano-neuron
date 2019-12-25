@@ -145,7 +145,7 @@ function forwardPropagation(model, xTrain, yTrain) {
   const predictions = [];
   let cost = 0;
   for (let i = 0; i < m; i += 1) {
-    const prediction = nanoNeuron.predict(xTrain[i]);
+    const prediction = model.predict(xTrain[i]);
     cost += predictionCost(yTrain[i], prediction);
     predictions.push(prediction);
   }
