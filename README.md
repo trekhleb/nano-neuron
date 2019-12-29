@@ -41,7 +41,7 @@ function NanoNeuron(w, b) {
 }
 ```
 
-_(...wait... [linear regression](https://en.wikipedia.org/wiki/Linear_regression) is it you?)_  🧐
+_(...wait... [linear regression](https://en.wikipedia.org/wiki/Linear_regression), [eli5 linear regression](https://simple.wikipedia.org/wiki/Linear_regression), [linear regression in 8 video minutes](https://www.youtube.com/watch?v=KsVBBJRb9TE)  is it you?)_  🧐
 
 ### Celsius to Fahrenheit conversion
 
@@ -111,8 +111,12 @@ This is a simple difference between two values. The closer the values are to eac
 The cost function in this case will be as simple as:
 
 ```javascript
-function predictionCost(y, prediction) {
-  return (y - prediction) ** 2 / 2; // i.e. -> 235.6
+/**
+ * if y=33.8 and yPredicted=33.95 then cost=0.0128 -> low = good
+ * if y=33.8 and yPredicted=459.1; then cost=90 440 -> high = bad
+ */
+function predictionCost(y, yPredicted) {
+  return (y - yPredicted) ** 2 / 2; // i.e. -> 235.6
 }
 ```
 
