@@ -112,7 +112,7 @@ The cost function in this case will be as simple as:
 
 ```javascript
 /**
- * if y=33.8 and yPredicted=33.95 then cost=0.0128 -> low = good
+ * if y=33.8 and yPredicted=33.95; then cost=0.0128 -> low = good
  * if y=33.8 and yPredicted=459.1; then cost=90 440 -> high = bad
  */
 function predictionCost(y, yPredicted) {
