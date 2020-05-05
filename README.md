@@ -4,6 +4,8 @@
 
 _In other languages: [Русский](README.ru-RU.md)_
 
+> _You might also be interested in 🤖 [Interactive Machine Learning Experiments](https://github.com/trekhleb/machine-learning-experiments)_
+
 ## TL;DR
 
 [NanoNeuron](https://github.com/trekhleb/nano-neuron) is an _over-simplified_ version of the Neuron concept from Neural Networks. NanoNeuron is trained to convert temperature values from Celsius to Fahrenheit.
