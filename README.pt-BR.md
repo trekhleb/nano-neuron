@@ -1,6 +1,6 @@
 # NanoNeuron
 
-> 7 funções simples do JavaScript que farão você ter uma ideia de como as máquinas literalmente possam "aprender".
+> 7 funções simples do JavaScript que farão você ter uma ideia de como as máquinas podem "aprender"  literalmente.
 
 _Em outros idiomas: [Русский](README.ru-RU.md), [English](README.md)_
 
@@ -8,15 +8,15 @@ _Em outros idiomas: [Русский](README.ru-RU.md), [English](README.md)_
 
 ## Resumo
 
-[NanoNeuron](https://github.com/trekhleb/nano-neuron) é uma versão _ultra simples_ do conceito de Neurônio de uma Rede Neural. NanoNeuron é treinado para converter valores de graus Celsius em Fahrenheit.
+[NanoNeuron](https://github.com/trekhleb/nano-neuron) é uma versão _bem simples_ do conceito de Neurônio em uma Rede Neural. NanoNeuron é treinado para converter valores de graus Celsius em Fahrenheit.
 
-O código de exemplo [NanoNeuron.js](https://github.com/trekhleb/nano-neuron/blob/master/NanoNeuron.js) contém 7 simples funções JavaScript (sobre predição de modelo, cálculo de custo, propagação e retro-propagação, e treinamento) que irá te dar a visão de como as máquinas podem literalmente "aprender". Sem bibliotecas de terciros, sem conjuntos de dados externos ou dependências, apenas simples e puramente funções JavaScript.
+O código de exemplo [NanoNeuron.js](https://github.com/trekhleb/nano-neuron/blob/master/NanoNeuron.js) contém 7 simples funções JavaScript (sobre predição de modelo, cálculo de custo, propagação e retro-propagação, e treinamento) que irá te dar a visão de como as máquinas podem literalmente "aprender". Sem bibliotecas de terceiros, sem conjuntos de dados externos ou dependências, apenas simples e puramente funções JavaScript.
 
-☝🏻Essas funções **NÃO** são, de nenhuma forma, um guia completo para aprendizado de máquina (_"machine learning" em inglês_). Um monte de conceitos de machine learning foram pulados e muito simplificados! Essa simplificação foi feita com o propósito de dar ao leitor apenas um entendimento **básico** da visão de como as máquinas podem aprender e por fim para tornar isso possível para o leitor reconhecer que isso não é um "aprendizado MÁGICO de máquina" mas sim um "aprendizado MATEMÁTICO de máquina" 🤓.
+☝🏻Essas funções **NÃO** são, de nenhuma forma, um guia completo para aprendizado de máquina (_"machine learning" em inglês_). Um monte de conceitos de machine learning foram desconsiderados e muito simplificados! Essa simplificação foi feita com o propósito de dar ao leitor apenas um entendimento **básico** da visão de como as máquinas podem aprender e por fim para tornar possível para o leitor reconhecer que isso não é um "aprendizado MÁGICO de máquina" mas sim um "aprendizado MATEMÁTICO de máquina" 🤓.
 
 ## O que o nosso NanoNeuron irá aprender
 
-Provavelmente você já ouviu falar sobre Neurônios no contexto de [Redes Neurais](https://pt.wikipedia.org/wiki/Rede_neural_artificial). NanoNeuron é isso mas de forma simples e nós vamos implementar desde o início. Para efeitos de simplicidade nós não iremos construir uma rede de NanoNeuron. Teremos tudo funcionando no mesmo lugar, fazendo algumas predições mágicas para nós. Só pra você saber, vamos ensinar esse NanoNeuron a converter (predizer) a temperatura em graus Celsius para Fahrenheit.
+Provavelmente você já ouviu falar sobre Neurônios no contexto de [Redes Neurais](https://pt.wikipedia.org/wiki/Rede_neural_artificial). NanoNeuron é isso mas de forma simples e vamos implementar desde o início. Para efeitos de simplicidade nós não iremos construir uma rede de NanoNeuron. Teremos tudo funcionando no mesmo lugar, fazendo algumas predições mágicas para nós. Só pra você saber, vamos ensinar esse NanoNeuron a converter (predizer) a temperatura em graus Celsius para Fahrenheit.
 
 A propósito, a fórmula para converter graus Celsius em Fahrenheit é essa:
 
@@ -26,9 +26,9 @@ Mas por enquanto nosso NanoNeuron não sabe disso...
 
 ### O modelo NanoNeuron
 
-Vamos implementar nossa função de modelo do NanoNeuron. Ele implementa uma dependência linear básica entre `x` e `y` que se parece como `y = w * x + b`. Basicamente, nosso NanoNeuron é uma "criança" na "escola" aprendendo a desenhar uma linha reta nas coordenadas `XY`.
+Vamos implementar nossa função de modelo do NanoNeuron. Ela implementa uma dependência linear básica entre `x` e `y` que se parece com `y = w * x + b`. Basicamente, nosso NanoNeuron é uma "criança" na "escola" aprendendo a desenhar uma linha reta nas coordenadas `XY`.
 
-Variáveis `w`, `b` são parâmetros do modelo. NanoNeuron só conhece esses dois parâmetros da função linear. Eles são algo que NanoNeuron deverá "aprender" durante o processo de treinamento.
+Variáveis `w`, `b` são parâmetros do modelo. NanoNeuron só conhece esses dois parâmetros da função linear. Eles são algo que NanoNeuron irá "aprender" durante o processo de treinamento.
 
 A única coisa que o NanoNeuron pode fazer é imitar a dependência linear. No método `predict()` é aceito um dado de entrada `x` e prediz a saída `y`. Nenhuma mágica aqui.
 
@@ -67,11 +67,11 @@ Assim é como a função de conversão de graus Celsius para Fahrenheit irá par
 
 Antes do treinamento nós precisamos **treinar** e **testar os dados** baseando-se na função `celsiusToFahrenheit()`. Os conjuntos de dados consistem em pares de valores de entrada e valores de saída corretamente calculados.
 
-> Na vida real, na maioria dos casos, esses dados são coletados ao invés de gerados. Por exemplo, podemos ter um conjunto de imagens de números desenhados à mão e o conjunto com os números que explica qual é o número escrito em cada imagem.
+> Na vida real, na maioria dos casos, esses dados são coletados ao invés de gerados. Por exemplo, podemos ter um conjunto de imagens de números desenhados à mão e o conjunto com os números que explicam qual é o número escrito em cada imagem.
 
 Usaremos os dados de exemplo de TREINAMENTO para treinar nosso NanoNeuron. Antes dele crescer e ser capaz de fazer decisões sozinho, precisamos ensiná-lo o que é certo e o que é errado usando os exemplos de treinamento.
 
-Usaremos o exemplos de TESTE para avaliar o quanto nosso NanoNeuron performa bem nos dados que ele nunca viu durante o treinamento. Esse é o ponto onde podemos ver que a nossa "criança" cresceu e pode tomar decisões sozinho.
+Usaremos os exemplos de TESTE para avaliar o quanto nosso NanoNeuron performa bem nos dados que ele nunca viu durante o treinamento. Esse é o ponto onde podemos ver que a nossa "criança" cresceu e pode tomar decisões sozinha.
 
 ```javascript
 function generateDataSets() {
@@ -89,7 +89,7 @@ function generateDataSets() {
   // yTest -> [32.9, 34.7, 36.5, ...]
   const xTest = [];
   const yTest = [];
-  // Ao começar com 0.5 e usar o mesmo incremento de 1 como usamos para o conjunto
+  // Ao começar com 0,5 e usar o mesmo incremento de 1 como usamos para o conjunto
   // de treinamento, temos certeza que teremos dados diferentes para comparar.
   for (let x = 0.5; x < 100; x += 1) {
     const y = celsiusToFahrenheit(x);
@@ -101,7 +101,7 @@ function generateDataSets() {
 }
 ```
 
-### O custo (o erro) da predição
+### O custo (do erro) da predição
 
 Precisamos ter alguma métrica que nos mostre o quão perto nosso modelo de predição está dos valores corretos. O cálculo do custo (o engano) entre o valor correto calculado de `y` e a `prediction`, que o nosso NanoNeuron criou, será feito usando a seguinte fórmula:
 
@@ -119,9 +119,9 @@ function predictionCost(y, prediction) {
 
 ### Propagação (para frente)
 
-Propagação signigica fazer uma predição de todos os exemplos de treinamento para os conjuntos de dados `xTrain` e `yTrain` e para calcular o custo médio dessas predições no meio do caminho.
+Propagação _("forward propagation" em inglês)_ signigica fazer uma predição de todos os exemplos de treinamento para os conjuntos de dados `xTrain` e `yTrain` e para calcular o custo médio dessas predições no meio do caminho.
 
-Vamos apenas deixar nosso NanoNeuron dizer sua opinião, nesse momento, permitindo-o advinhar como converter a temperatura. Ele deve estar estupidamente errado nessa fase. O custo médio nos mostrará o quão errado nosso modelo está agora. Esse valor de custo é realmente importante visto que alterando o parâmetros NanoNeuron `w` e `b`, e fazendo a propagação novamente; estaremos apto à avaliar se nosso NanoNeuron se tornou esperto ou não depois conforme os parâmetros mudam.
+Vamos apenas deixar nosso NanoNeuron dizer sua opinião nesse momento, permitindo-o advinhar como converter a temperatura. Ele deve estar estupidamente errado nessa fase. O custo médio nos mostrará o quão errado nosso modelo está agora. Esse valor de custo é realmente importante visto que alterando os parâmetros NanoNeuron `w` e `b` e fazendo a propagação novamente, estaremos apto à avaliar depois se nosso NanoNeuron se tornou esperto ou não conforme os parâmetros mudam.
 
 O custo médio será calculado usando a seguinte fórmula:
 
@@ -151,15 +151,15 @@ function forwardPropagation(model, xTrain, yTrain) {
 
 Quando conhecemos o quão certo ou errado nossas predições do NanoNeuron estão (baseado no custo médio a este ponto) o que devemos fazer para tornar essas predições mais precisas?
 
-A retro-propagação nos dá a resposta para essa questão. Retro-propagação (_Backward propagation_ em inglês) é o processo de avaliar o custo da predição e ajustar os parâmetros do NanoNeuron `w` e `b` para que as próximas e futuras predições sejam mais precisas.
+A retro-propagação nos dá a resposta para essa questão. Retro-propagação _(Backward propagation em inglês)_ é o processo de avaliar o custo da predição e ajustar os parâmetros do NanoNeuron `w` e `b` para que as próximas e futuras predições sejam mais precisas.
 
 Isso é onde o aprendizado de máquina se parece com mágica 🧞‍♂️. O conceito chave aqui é a **derivada** que nos mostra qual passo dar para chegar perto do custo mínimo da função.
 
-Lembre, encontrar o custo mínimo da função é o objetivo final do processo de treinamento. Se encontrármos ambos valores de `w` e `b` de forma que o custo médio da nossa função seja pequeno, isso significa que o modelo NanoNeuron fez predições ótimas e precisas.
+Lembre-se, encontrar o custo mínimo da função é o objetivo final do processo de treinamento. Se encontrármos ambos valores de `w` e `b` de forma que o custo médio da nossa função seja pequeno, isso significa que o modelo NanoNeuron fez predições ótimas e precisas.
 
-Derivadas são um grande e separado tópico que não iremos cobrir nesse artigo. [Wikipedia](https://pt.wikipedia.org/wiki/Derivada) pode te ajudar a entender melhor sobre isso.
+Derivada é um grande e separado tópico que não iremos cobrir neste artigo. [Wikipedia](https://pt.wikipedia.org/wiki/Derivada) pode te ajudar a entender melhor sobre isso.
 
-Uma coisa sobre as derivadas que irá te ajudar a entender como a retro-propagação funciona é que as derivadas, é uma linha tangente da função da curva que aponta pra frente na direção função mínima.
+Uma coisa sobre as derivadas que irá te ajudar a entender como a retro-propagação funciona é que a derivada é ela representa a inclinação da reta tangente ao gráfico desta função em um determinado ponto.
 
 ![Inclinição da derivada](https://www.mathsisfun.com/calculus/images/slope-x2-2.svg)
 
@@ -167,7 +167,7 @@ _Origem da imagem: [MathIsFun](https://www.mathsisfun.com/calculus/derivatives-i
 
 Por exemplo, no gráfico acima, você pode ver que se estivermos no ponto `(x=2, y=4)` então a inclinição nos diz para ir para a `esquerda` e para `baixo` para obter a função mínima. Note também que quanto maior a inclinição, mais rápido nos movemos para o mínimo.
 
-As derivadas da nossa função `averageCost` (custo médio em inglês) para os parâmetros `w` e `b` se parece com:
+As derivadas da nossa função `averageCost` _(custo médio em inglês)_ para os parâmetros `w` e `b` se parecem com:
 
 ![dW](https://github.com/trekhleb/nano-neuron/blob/master/assets/04_dw.png?raw=true)
 
@@ -197,13 +197,13 @@ function backwardPropagation(predictions, xTrain, yTrain) {
 
 ### Treinando o modelo
 
-Agora que sabemos como avaliar a exatidão do nosso modelo para todo o conjunto de exemplos (_propagação_), nós precisamos também saber como fazer pequenos ajustes nos parâmetros `w` e `b` do nosso modelo (_retro-propagação_). Mas o problema é que se rodarmos apenas uma vez a propagação e a retro-propagação, não será o suficiente para o nosso modelo aprender qualquer leis/tendências dos dados de treinamento. Você deve comparar isso com um dia da escola primária para a criança. Ela deve ir para a escola não apenas uma vez mas dia após dia e ano após ano para aprender algo.
+Agora que sabemos como avaliar a exatidão do nosso modelo para todo o conjunto de exemplos (_propagação_), nós precisamos também saber como fazer pequenos ajustes nos parâmetros `w` e `b` do nosso modelo (_retro-propagação_). Mas o problema é que se rodarmos apenas uma vez a propagação e a retro-propagação, não será o suficiente para o nosso modelo aprender qualquer lei/tendência dos dados de treinamento. Você deve comparar isso com um dia da escola primária para a criança. Ela deve ir para a escola não apenas uma vez, mas dia após dia e ano após ano para aprender algo.
 
-Então precisamos repetir as propagações do nosso modelo várias vezes. Isso é exatamente o que a função `trainModel()` faz. É como um "professor" para nosso modelo do NanoNeuron:
+Então precisamos repetir as propagações do nosso modelo várias vezes. Isto é exatamente o que a função `trainModel()` faz. É como um "professor" para nosso modelo do NanoNeuron:
 
 - ela irá passar um tempo (`epochs`) com o nosso ligeiro modelo do NanoNeuron e tentará treiná-lo/ensiná-lo,
 - usará "livros" específicos (os conjuntos de dados `xTrain` e `yTrain`) para treinar,
-- irá forçar nossa criança a aprender pesado (rápido) usando um parâmetro de razão `alpha`.
+- irá forçar nossa criança a aprender pesado (rápido) usando um parâmetro de ajuste `alpha`.
 
 Uma nota sobre a taxa de aprendizado `alpha`. Ela é simplesmente um multiplicador dos valores de `dW` e `dB` que calculamos durante a retro-propagação. Assim, as derevidas nos apontam para a direção que precisamos para obter a função de custo mínimo (indicadores `dW` e `dB`) e isso nos mostra também o quão rápido precisamos ir naquela direção  (valores absolutos de `dW` e `dB`). Então precisamos multiplicar o tamanho dos passos de `alpha` para ajustar nosso movimento ao mínimo, mais rápido ou mais devagar. Algumas vezes se usarmos um valor alto para `alpha`, vamos simplesmente passar do mínimo e nunca vamos encontrá-lo.
 
@@ -252,13 +252,13 @@ const b = Math.random(); // ex: -> 0.4570
 const nanoNeuron = new NanoNeuron(w, b);
 ```
 
-Gerar o treinamento e testar os conjuntos de dados.
+Gerar os conjuntos de dados do treinamento e o de testes.
 
 ```javascript
 const [xTrain, yTrain, xTest, yTest] = generateDataSets();
 ```
 
-Vamos treinar nosso modelo com um pequeno incremento (`0.0005`) por passo para `70.000` épocas. Você pode brincar com esses parâmetros, eles foram definidos empiricamente.
+Vamos treinar nosso modelo com um pequeno incremento (`0,0005`) por passo para `70.000` épocas. Você pode brincar com esses parâmetros, eles foram definidos empiricamente.
 
 ```javascript
 const epochs = 70000;
@@ -277,7 +277,7 @@ Isso é como o custo do treinamento muda através das épocas. No eixo `x` é a 
 
 ![Processo de treinamento](https://github.com/trekhleb/nano-neuron/blob/master/assets/06-training-process.png?raw=true)
 
-Vamos dar uma olhada nos parâmetros do NanoNeuron para ver o que ele aprendeu. Esperamos que os parâmetros `w` e `b` do NanoNeuron sejam similares com o que temos na função `celsiusToFahrenheit()` (`w = 1.8` e `b = 32`) visto que treinamos o NanoNeuron para imitar isso.
+Vamos dar uma olhada nos parâmetros do NanoNeuron para ver o que ele aprendeu. Esperamos que os parâmetros `w` e `b` do NanoNeuron sejam similares com os que temos na função `celsiusToFahrenheit()` (`w = 1.8` e `b = 32`) visto que treinamos o NanoNeuron para imitar isso.
 
 ```javascript
 console.log('Parâmetros NanoNeuron:', {w: nanoNeuron.w, b: nanoNeuron.b}); // ex: -> {w: 1.8, b: 31.99}
@@ -299,7 +299,7 @@ console.log(`NanoNeuron "acha" que ${tempInCelsius}°C em Fahrenheit é:`, custo
 console.log('Resposta correta é:', celsiusToFahrenheit(tempInCelsius)); // -> 158
 ```
 
-Bem perto! Para nós humanos, nosso NanoNeuron é bom mas não ideal :)
+Muito próximo! Para nós humanos, nosso NanoNeuron é bom mas não ideal :)
 
 Bom aprendizado para você!
 
@@ -316,7 +316,7 @@ cd nano-neuron
 node ./NanoNeuron.js
 ```
 
-## Conceitos pulados do aprendizado de máquina
+## Conceitos desconsiderados do aprendizado de máquina
 
 Os seguintes conceitos de _machine learning_ foram pulados e simplificados para uma explicação mais simples.
 
@@ -326,7 +326,7 @@ Normalmente você tem um grande conjunto de dados. Dependendo do número de exem
 
 **A rede traz o poder**
 
-Normalmente você não observa o uso de apenas um neurônio independente. O pode está na [rede neural](https://pt.wikipedia.org/wiki/Rede_neural_artificial) desses neurônios. A rede pode aprender coisas muito mais complexas. NanoNeuron sozinho se parece mais com uma simples [regressão linear](https://pt.wikipedia.org/wiki/Regress%C3%A3o_linear) do que uma rede neural.
+Normalmente você não observa o uso de apenas um neurônio independente. O poder está na [rede neural](https://pt.wikipedia.org/wiki/Rede_neural_artificial) desses neurônios. A rede pode aprender coisas muito mais complexas. NanoNeuron sozinho se parece mais com uma simples [regressão linear](https://pt.wikipedia.org/wiki/Regress%C3%A3o_linear) do que uma rede neural.
 
 **Normalização dos dados de entrada**
 
@@ -334,7 +334,7 @@ Antes do treinamento, seria melhor [normalizar os dados de entrada (em inglês)]
 
 **Implementação vetorizada**
 
-Para redes, cálculos vetorizados (matriz) trabalham muito mais rápido do que laços `for`. Normalmente as propagações (frente e trás) trabalhammuti rápido se implementadas de forma vetorizadas e calculadas usando, por exemplo uma biblioteca Python [Numpy](https://numpy.org/).
+Para redes neurais, cálculos vetorizados (matriz) trabalham muito mais rápido do que laços `for`. Normalmente as propagações (frente e trás) trabalham muito rápido se implementadas de forma vetorizada e calculadas usando, por exemplo uma biblioteca Python [Numpy](https://numpy.org/).
 
 **Função de custo mínimo**
 
