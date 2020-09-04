@@ -2,7 +2,7 @@
 
 > 7 простых JavaScript функций, показывающих, как машина может «учиться»
 
-_На других языках: [English](README.md)_
+_На других языках: [English](README.md), [Português](README.pt-BR.md)_
 
 ## TL;DR
 

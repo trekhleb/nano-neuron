@@ -2,7 +2,7 @@
 
 > 7 simple JavaScript functions that will give you a feeling of how machines can actually "learn".
 
-_In other languages: [Русский](README.ru-RU.md)_
+_In other languages: [Русский](README.ru-RU.md), [Português](README.pt-BR.md)_
 
 > _You might also be interested in 🤖 [Interactive Machine Learning Experiments](https://github.com/trekhleb/machine-learning-experiments)_
 
