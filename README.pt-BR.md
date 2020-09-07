@@ -10,7 +10,7 @@ _Em outros idiomas: [Русский](README.ru-RU.md), [English](README.md)_
 
 [NanoNeuron](https://github.com/trekhleb/nano-neuron) é uma versão _bem simples_ do conceito de Neurônio em uma Rede Neural. NanoNeuron é treinado para converter valores de graus Celsius em Fahrenheit.
 
-O código de exemplo [NanoNeuron.js](https://github.com/trekhleb/nano-neuron/blob/master/NanoNeuron.js) contém 7 simples funções JavaScript (sobre predição de modelo, cálculo de custo, propagação e retro-propagação, e treinamento) que irá te dar a visão de como as máquinas podem literalmente "aprender". Sem bibliotecas de terceiros, sem conjuntos de dados externos ou dependências, apenas simples e puramente funções JavaScript.
+O código de exemplo [NanoNeuron.js](https://github.com/trekhleb/nano-neuron/blob/master/NanoNeuron.js) contém 7 simples funções JavaScript (sobre predição de modelo, cálculo de custo, propagação e retropropagação, e treinamento) que irá te dar a visão de como as máquinas podem literalmente "aprender". Sem bibliotecas de terceiros, sem conjuntos de dados externos ou dependências, apenas simples e puramente funções JavaScript.
 
 ☝🏻Essas funções **NÃO** são, de nenhuma forma, um guia completo para aprendizado de máquina (_"machine learning" em inglês_). Um monte de conceitos de machine learning foram desconsiderados e muito simplificados! Essa simplificação foi feita com o propósito de dar ao leitor apenas um entendimento **básico** da visão de como as máquinas podem aprender e por fim para tornar possível para o leitor reconhecer que isso não é um "aprendizado MÁGICO de máquina" mas sim um "aprendizado MATEMÁTICO de máquina" 🤓.
 
@@ -107,7 +107,7 @@ Precisamos ter alguma métrica que nos mostre o quão perto nosso modelo de pred
 
 ![Custo de predição](https://github.com/trekhleb/nano-neuron/blob/master/assets/02_cost_function.png?raw=true)
 
-Esse é uma simples diferença entre dois valores. O quanto mais perto os valores estão um do outro, menor a diferença. Estamos usando uma potência de `2` aqui apenas para se livrar dos números negativos de forma que `(1 - 2) ^ 2` será o mesmo que `(2 - 1) ^ 2`. Divisão por `2` acontece apenas para simplificar depois a fórmula de retro-propagação (veja abaixo).
+Esse é uma simples diferença entre dois valores. O quanto mais perto os valores estão um do outro, menor a diferença. Estamos usando uma potência de `2` aqui apenas para se livrar dos números negativos de forma que `(1 - 2) ^ 2` será o mesmo que `(2 - 1) ^ 2`. Divisão por `2` acontece apenas para simplificar depois a fórmula de retropropagação (veja abaixo).
 
 A função de custo nesse caso, será tão simples quanto:
 
@@ -119,9 +119,9 @@ function predictionCost(y, prediction) {
 
 ### Propagação (para frente)
 
-Propagação _("forward propagation" em inglês)_ signigica fazer uma predição de todos os exemplos de treinamento para os conjuntos de dados `xTrain` e `yTrain` e para calcular o custo médio dessas predições no meio do caminho.
+Propagação _("forward propagation" em inglês)_ significa fazer uma predição de todos os exemplos de treinamento para os conjuntos de dados `xTrain` e `yTrain` e para calcular o custo médio dessas predições no meio do caminho.
 
-Vamos apenas deixar nosso NanoNeuron dizer sua opinião nesse momento, permitindo-o advinhar como converter a temperatura. Ele deve estar estupidamente errado nessa fase. O custo médio nos mostrará o quão errado nosso modelo está agora. Esse valor de custo é realmente importante visto que alterando os parâmetros NanoNeuron `w` e `b` e fazendo a propagação novamente, estaremos apto à avaliar depois se nosso NanoNeuron se tornou esperto ou não conforme os parâmetros mudam.
+Vamos apenas deixar nosso NanoNeuron dizer sua opinião nesse momento, permitindo-o adivinhar como converter a temperatura. Ele deve estar estupidamente errado nessa fase. O custo médio nos mostrará o quão errado nosso modelo está agora. Esse valor de custo é realmente importante visto que alterando os parâmetros NanoNeuron `w` e `b` e fazendo a propagação novamente, estaremos aptos a avaliar depois se nosso NanoNeuron se tornou esperto ou não conforme os parâmetros mudam.
 
 O custo médio será calculado usando a seguinte fórmula:
 
@@ -147,25 +147,25 @@ function forwardPropagation(model, xTrain, yTrain) {
 }
 ```
 
-### Retro-propagação (para trás)
+### retropropagação (para trás)
 
 Quando conhecemos o quão certo ou errado nossas predições do NanoNeuron estão (baseado no custo médio a este ponto) o que devemos fazer para tornar essas predições mais precisas?
 
-A retro-propagação nos dá a resposta para essa questão. Retro-propagação _(Backward propagation em inglês)_ é o processo de avaliar o custo da predição e ajustar os parâmetros do NanoNeuron `w` e `b` para que as próximas e futuras predições sejam mais precisas.
+A retropropagação nos dá a resposta para essa questão. retropropagação _(Backward propagation em inglês)_ é o processo de avaliar o custo da predição e ajustar os parâmetros do NanoNeuron `w` e `b` para que as próximas e futuras predições sejam mais precisas.
 
 Isso é onde o aprendizado de máquina se parece com mágica 🧞‍♂️. O conceito chave aqui é a **derivada** que nos mostra qual passo dar para chegar perto do custo mínimo da função.
 
-Lembre-se, encontrar o custo mínimo da função é o objetivo final do processo de treinamento. Se encontrármos ambos valores de `w` e `b` de forma que o custo médio da nossa função seja pequeno, isso significa que o modelo NanoNeuron fez predições ótimas e precisas.
+Lembre-se, encontrar o custo mínimo da função é o objetivo final do processo de treinamento. Se encontrarmos ambos valores de `w` e `b` de forma que o custo médio da nossa função seja pequeno, isso significa que o modelo NanoNeuron fez predições ótimas e precisas.
 
 Derivada é um grande e separado tópico que não iremos cobrir neste artigo. [Wikipedia](https://pt.wikipedia.org/wiki/Derivada) pode te ajudar a entender melhor sobre isso.
 
-Uma coisa sobre as derivadas que irá te ajudar a entender como a retro-propagação funciona é que a derivada é ela representa a inclinação da reta tangente ao gráfico desta função em um determinado ponto.
+Uma coisa sobre as derivadas que irá te ajudar a entender como a retropropagação funciona é que a derivada é ela representa a inclinação da reta tangente ao gráfico desta função em um determinado ponto.
 
-![Inclinição da derivada](https://www.mathsisfun.com/calculus/images/slope-x2-2.svg)
+![Inclinação da derivada](https://www.mathsisfun.com/calculus/images/slope-x2-2.svg)
 
 _Origem da imagem: [MathIsFun](https://www.mathsisfun.com/calculus/derivatives-introduction.html)_
 
-Por exemplo, no gráfico acima, você pode ver que se estivermos no ponto `(x=2, y=4)` então a inclinição nos diz para ir para a `esquerda` e para `baixo` para obter a função mínima. Note também que quanto maior a inclinição, mais rápido nos movemos para o mínimo.
+Por exemplo, no gráfico acima, você pode ver que se estivermos no ponto `(x=2, y=4)` então a inclinação nos diz para ir para a `esquerda` e para `baixo` para obter a função mínima. Note também que quanto maior a inclinação, mais rápido nos movemos para o mínimo.
 
 As derivadas da nossa função `averageCost` _(custo médio em inglês)_ para os parâmetros `w` e `b` se parecem com:
 
@@ -197,7 +197,7 @@ function backwardPropagation(predictions, xTrain, yTrain) {
 
 ### Treinando o modelo
 
-Agora que sabemos como avaliar a exatidão do nosso modelo para todo o conjunto de exemplos (_propagação_), nós precisamos também saber como fazer pequenos ajustes nos parâmetros `w` e `b` do nosso modelo (_retro-propagação_). Mas o problema é que se rodarmos apenas uma vez a propagação e a retro-propagação, não será o suficiente para o nosso modelo aprender qualquer lei/tendência dos dados de treinamento. Você deve comparar isso com um dia da escola primária para a criança. Ela deve ir para a escola não apenas uma vez, mas dia após dia e ano após ano para aprender algo.
+Agora que sabemos como avaliar a exatidão do nosso modelo para todo o conjunto de exemplos (_propagação_), nós precisamos também saber como fazer pequenos ajustes nos parâmetros `w` e `b` do nosso modelo (_retropropagação_). Mas o problema é que se rodarmos apenas uma vez a propagação e a retropropagação, não será o suficiente para o nosso modelo aprender qualquer lei/tendência dos dados de treinamento. Você deve comparar isso com um dia da escola primária para a criança. Ela deve ir para a escola não apenas uma vez, mas dia após dia e ano após ano para aprender algo.
 
 Então precisamos repetir as propagações do nosso modelo várias vezes. Isto é exatamente o que a função `trainModel()` faz. É como um "professor" para nosso modelo do NanoNeuron:
 
@@ -205,7 +205,7 @@ Então precisamos repetir as propagações do nosso modelo várias vezes. Isto �
 - usará "livros" específicos (os conjuntos de dados `xTrain` e `yTrain`) para treinar,
 - irá forçar nossa criança a aprender pesado (rápido) usando um parâmetro de ajuste `alpha`.
 
-Uma nota sobre a taxa de aprendizado `alpha`. Ela é simplesmente um multiplicador dos valores de `dW` e `dB` que calculamos durante a retro-propagação. Assim, as derevidas nos apontam para a direção que precisamos para obter a função de custo mínimo (indicadores `dW` e `dB`) e isso nos mostra também o quão rápido precisamos ir naquela direção  (valores absolutos de `dW` e `dB`). Então precisamos multiplicar o tamanho dos passos de `alpha` para ajustar nosso movimento ao mínimo, mais rápido ou mais devagar. Algumas vezes se usarmos um valor alto para `alpha`, vamos simplesmente passar do mínimo e nunca vamos encontrá-lo.
+Uma nota sobre a taxa de aprendizado `alpha`. Ela é simplesmente um multiplicador dos valores de `dW` e `dB` que calculamos durante a retropropagação. Assim, as derivadas nos apontam para a direção que precisamos para obter a função de custo mínimo (indicadores `dW` e `dB`) e isso nos mostra também o quão rápido precisamos ir naquela direção  (valores absolutos de `dW` e `dB`). Então precisamos multiplicar o tamanho dos passos de `alpha` para ajustar nosso movimento ao mínimo, mais rápido ou mais devagar. Algumas vezes se usarmos um valor alto para `alpha`, vamos simplesmente passar do mínimo e nunca vamos encontrá-lo.
 
 A analogia com o professor pode ser que quanto mais ele força nossa "criança nano" a ser mais rápida, ela irá aprender, mas se forçarmos demais, a "criança" terá um ataque de nervos e não será capaz de aprender nada 🤯.
 
@@ -228,7 +228,7 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
     const [predictions, cost] = forwardPropagation(model, xTrain, yTrain);
     costHistory.push(cost);
   
-    // Retro-propagação
+    // retropropagação
     const [dW, dB] = backwardPropagation(predictions, xTrain, yTrain);
   
     // Ajustar os parâmetros do nosso NanoNeuron para aumentar a acurácia do nosso modelo de predições.
@@ -290,7 +290,7 @@ Avalie a acurácia do modelo usando os dados de teste para ver o quanto o NanoNe
 console.log('Custo com novos dados de teste:', testCost); // ex: -> 0.0000023
 ```
 
-Agora, visto que nossa "criança" NanoNeuron performou bem na "escola" durante o treinamento e ele pode converter graus Celsius em Fahrenheit corretamente, mesmo para dados que nunca viu, podemos chamá-lo de "esperto" e perguntá-lo algumas coisas. Esse era o objetivo final de todo nosso processo de treinaento.
+Agora, visto que nossa "criança" NanoNeuron performou bem na "escola" durante o treinamento e ele pode converter graus Celsius em Fahrenheit corretamente, mesmo para dados que nunca viu, podemos chamá-lo de "esperto" e perguntá-lo algumas coisas. Esse era o objetivo final de todo nosso processo de treinamento.
 
 ```javascript
 const tempInCelsius = 70;
@@ -299,7 +299,7 @@ console.log(`NanoNeuron "acha" que ${tempInCelsius}°C em Fahrenheit é:`, custo
 console.log('Resposta correta é:', celsiusToFahrenheit(tempInCelsius)); // -> 158
 ```
 
-Muito próximo! Para nós humanos, nosso NanoNeuron é bom mas não ideal :)
+Muito próximo! Para nós humanos, nosso NanoNeuron é bom, mas não ideal :)
 
 Bom aprendizado para você!
 
@@ -320,26 +320,26 @@ node ./NanoNeuron.js
 
 Os seguintes conceitos de _machine learning_ foram pulados e simplificados para uma explicação mais simples.
 
-**Divisão do conjunto de dados de treinamento/teste**
+### Divisão do conjunto de dados de treinamento/teste
 
-Normalmente você tem um grande conjunto de dados. Dependendo do número de exemplos no conjunto, você pode querer dividí-lo em 70/30 para treino/teste. Os dados no conjunto devem ser embaralhados aleatoriamente antes da divisão. Se o número de exemplos é grande (ex: milhões) então a divisão acontece em proporções próximas a 90/10 ou 95/5 para treino/teste.
+Normalmente você tem um grande conjunto de dados. Dependendo do número de exemplos no conjunto, você pode querer dividi-lo em 70/30 para treino/teste. Os dados no conjunto devem ser embaralhados aleatoriamente antes da divisão. Se o número de exemplos é grande (ex: milhões) então a divisão acontece em proporções próximas a 90/10 ou 95/5 para treino/teste.
 
-**A rede traz o poder**
+### A rede traz o poder
 
 Normalmente você não observa o uso de apenas um neurônio independente. O poder está na [rede neural](https://pt.wikipedia.org/wiki/Rede_neural_artificial) desses neurônios. A rede pode aprender coisas muito mais complexas. NanoNeuron sozinho se parece mais com uma simples [regressão linear](https://pt.wikipedia.org/wiki/Regress%C3%A3o_linear) do que uma rede neural.
 
-**Normalização dos dados de entrada**
+### Normalização dos dados de entrada
 
 Antes do treinamento, seria melhor [normalizar os dados de entrada (em inglês)](https://www.jeremyjordan.me/batch-normalization/).
 
-**Implementação vetorizada**
+### Implementação vetorizada
 
 Para redes neurais, cálculos vetorizados (matriz) trabalham muito mais rápido do que laços `for`. Normalmente as propagações (frente e trás) trabalham muito rápido se implementadas de forma vetorizada e calculadas usando, por exemplo uma biblioteca Python [Numpy](https://numpy.org/).
 
-**Função de custo mínimo**
+### Função de custo mínimo
 
-A função de custo que estamos usando nesse exemplo é muito simplificada. Deveria ter [componentes logarítmicos (em inglês)](https://stackoverflow.com/questions/32986123/why-the-cost-function-of-logistic-regression-has-a-logarithmic-expression/32998675). Alterando a função de custo também irá alterar suas derivadas então o passo de retro-propagação também deveria usar fórmulas diferentes.
+A função de custo que estamos usando nesse exemplo é muito simplificada. Deveria ter [componentes logarítmicos (em inglês)](https://stackoverflow.com/questions/32986123/why-the-cost-function-of-logistic-regression-has-a-logarithmic-expression/32998675). Alterando a função de custo também irá alterar suas derivadas então o passo de retropropagação também deveria usar fórmulas diferentes.
 
-**Função de ativação**
+### Função de ativação
 
 Normalmente a saída do neurônio deveria passar por uma função de ativação como a [Sigmoid](https://pt.wikipedia.org/wiki/Fun%C3%A7%C3%A3o_sigmoide) ou a [ReLU](https://pt.qwe.wiki/wiki/Rectifier_(neural_networks)) ou outras.
