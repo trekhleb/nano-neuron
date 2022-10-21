@@ -344,3 +344,7 @@ The cost function that we were using in this example is over-simplified. It shou
 **Activation function**
 
 Normally the output of a neuron should be passed through an activation function like [Sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) or [ReLU](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)) or others.
+
+## Author
+
+- [@trekhleb](https://trekhleb.dev)
