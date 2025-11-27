@@ -84,7 +84,7 @@ function forwardPropagation(model, xTrain, yTrain) {
   const predictions = [];
   let cost = 0;
   for (let i = 0; i < m; i += 1) {
-    const prediction = nanoNeuron.predict(xTrain[i]);
+    const prediction = model.predict(xTrain[i]);
     cost += predictionCost(yTrain[i], prediction);
     predictions.push(prediction);
   }
@@ -147,8 +147,8 @@ function trainModel({model, epochs, alpha, xTrain, yTrain}) {
     const [dW, dB] = backwardPropagation(predictions, xTrain, yTrain);
   
     // Adjust our NanoNeuron parameters to increase accuracy of our model predictions.
-    nanoNeuron.w += alpha * dW;
-    nanoNeuron.b += alpha * dB;
+    model.w += alpha * dW;
+    model.b += alpha * dB;
   }
 
   // Let's return cost history from the function to be able to log or to plot it after training.
@@ -188,7 +188,7 @@ console.log('NanoNeuron parameters:', {w: nanoNeuron.w, b: nanoNeuron.b}); // i.
 // Evaluate our model accuracy for test data-set to see how well our NanoNeuron deals with new unknown data predictions.
 // The cost of predictions on test sets is expected to be be close to the training cost.
 // This would mean that NanoNeuron performs well on known and unknown data.
-[testPredictions, testCost] = forwardPropagation(nanoNeuron, xTest, yTest);
+const [testPredictions, testCost] = forwardPropagation(nanoNeuron, xTest, yTest);
 console.log('Cost on new testing data:', testCost); // i.e. -> 0.0000023
 
 // Now, since we see that our NanoNeuron "kid" has performed well in the "school" during the training
